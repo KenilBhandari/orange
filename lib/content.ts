@@ -1,0 +1,162 @@
+export type Project = {
+  index: string;
+  slug: string;
+  name: string;
+  category: string;
+  year: string;
+  problem: string;
+  contribution: string;
+  art: "commerce" | "presence" | "trippy" | "payroll" | "erp";
+  note: string;
+  story: string[];
+  points: string[];
+};
+
+export const PROJECTS: Project[] = [
+  {
+    index: "01",
+    slug: "client-commerce",
+    name: "Client Commerce",
+    category: "E-commerce",
+    year: "2022",
+    problem: "A small business needed a clean online store customers could actually finish buying from.",
+    contribution: "Designed and built a simple, fast storefront with a clear product, cart, and checkout flow.",
+    art: "commerce",
+    note: "Conceptual illustration",
+    story: [
+      "OrangeDev's first project, taken on in 2022, was deliberately small: a single online store for a single business. The brief was not scale or novelty — it was usability. Customers had to find products, understand prices, and complete a purchase without help.",
+      "The build stayed close to that brief. A clean catalogue, an honest cart, and a checkout summary that shows exactly what you pay before you pay it. Placeholder products stand in for the client's real catalogue in every visual on this site.",
+      "It set the template for everything after: start with the person's actual task, remove everything that gets in the way, and make the software feel obvious.",
+    ],
+    points: ["Clean product catalogue", "Simple cart and checkout summary", "Fast on phones and low bandwidth"],
+  },
+  {
+    index: "02",
+    slug: "uk-website",
+    name: "UK Website",
+    category: "Website development",
+    year: "2023",
+    problem: "A UK client needed a digital presence with clear hierarchy and dependable delivery across borders.",
+    contribution: "Built a considered, content-first website with careful typography and straightforward structure.",
+    art: "presence",
+    note: "Conceptual illustration",
+    story: [
+      "In 2023 OrangeDev took on its first major international project: a full website build for a client in the United Kingdom. Working across borders meant communication had to be precise and delivery dependable — there was no room for ambiguity about what was being built.",
+      "The result was a content-first website: considered typography, clear hierarchy, and a structure that guides readers instead of decorating around them. The visuals shown here are conceptual illustrations of that approach, not the client's actual pages.",
+      "It proved the studio could carry a project beyond its home market — and marked the step from individual-sized builds to client work with real reputation attached.",
+    ],
+    points: ["Content-first page structure", "Considered typography and hierarchy", "Remote delivery with clear communication"],
+  },
+  {
+    index: "03",
+    slug: "trippy",
+    name: "Trippy",
+    category: "Transport management",
+    year: "2024",
+    problem: "Transport managers needed coordination and control over daily movement without phone chaos.",
+    contribution: "Built dispatch, route, and fleet-status workflows for transport operations.",
+    art: "trippy",
+    note: "Conceptual illustration",
+    story: [
+      "Trippy, started in 2024, was OrangeDev's first major build for the transport sector — and its first software for people whose work never sits still. Transport managers coordinate vehicles, routes, and people across a moving day, and phone calls were doing all of it.",
+      "The software gives that day a shape: routes drawn as systems rather than lists, dispatch boards with honest status indicators, and fleet overviews that stay readable when operations get busy. No invented fleet counts or metrics appear anywhere on this site — the illustration shows the workflow, not a customer's live board.",
+      "It was the company's first step into operational software: systems used in the middle of the working day, where clarity is not a luxury.",
+    ],
+    points: ["Route and dispatch workflows", "Fleet-status overview", "Status indicators for daily operations"],
+  },
+  {
+    index: "04",
+    slug: "payroll-software",
+    name: "Payroll Software",
+    category: "Workforce & payroll",
+    year: "2025",
+    problem: "Processing pay for 500+ workers every cycle without errors or end-of-month panic.",
+    contribution: "Built attendance-linked salary calculation, advances, approvals, and payment records at scale.",
+    art: "payroll",
+    note: "Supports 500+ workers · Conceptual illustration",
+    story: [
+      "The 2025 payroll build was a breakthrough: a complete payroll system handling more than 500 workers seamlessly. Payroll is unforgiving software — every number lands in someone's pocket, and every mistake lands in someone's trust.",
+      "The design treats accuracy as a user-experience problem. Employee lists stay structured, payroll status is always visible, earnings summaries read at a glance, and the approval step makes the whole run feel deliberate rather than anxious.",
+      "The same year also brought multiple client websites and interfaces — but payroll at scale is what proved OrangeDev could carry systems where precision matters most.",
+    ],
+    points: ["Structured employee lists", "Earnings summaries and status indicators", "Payroll runs supporting 500+ workers", "Clean approval flow"],
+  },
+  {
+    index: "05",
+    slug: "contractor-erp",
+    name: "Contractor ERP",
+    category: "Enterprise operations",
+    year: "2026",
+    problem: "Contractors needed projects, sites, labour, materials, and payments in one dependable system.",
+    contribution: "Built a fully operational ERP: project progress from sites, muster, salary, stock, expenses, and reports.",
+    art: "erp",
+    note: "Conceptual illustration",
+    story: [
+      "By 2026 OrangeDev had become an established brand — and took on its largest system yet: a fully operational ERP for contractors. This is the project where every earlier lesson compounds: commerce taught simplicity, the UK project taught delivery, Trippy taught operations, payroll taught precision.",
+      "The system connects what contractors previously tracked in separate places: projects with progress derived from their sites, labour with attendance-linked salary and advances, materials with stock that can never go negative, expenses split cleanly between site and personal, client payments, and reports across all of it.",
+      "The illustration on this site is the strongest visual here for a reason — it represents the company's arrival at enterprise software: one coherent operational environment instead of five scattered tools.",
+    ],
+    points: [
+      "Project progress derived from sites",
+      "Labour, attendance, and salary in one flow",
+      "Materials with guarded stock",
+      "Site vs personal expense separation",
+      "Client payments and cross-cutting reports",
+    ],
+  },
+];
+
+export function getProject(slug: string) {
+  return PROJECTS.find((p) => p.slug === slug);
+}
+
+export const TIMELINE = [
+  {
+    year: "2022",
+    title: "The Beginning",
+    text: "Small, practical projects for individuals. First build: Client Commerce — a simple, clean, usable e-commerce website.",
+  },
+  {
+    year: "2023",
+    title: "Beyond Borders",
+    text: "First major website development project for a client in the United Kingdom.",
+  },
+  {
+    year: "2024",
+    title: "Into Transport",
+    text: "Trippy — first major development for transport managers and their operational needs.",
+  },
+  {
+    year: "2025",
+    title: "Payroll at Scale",
+    text: "Complete payroll software handling 500+ workers seamlessly, plus multiple client websites and interfaces.",
+  },
+  {
+    year: "2026",
+    title: "Building Enterprise Systems",
+    text: "Established brand. Fully operational ERP system for contractors — and larger operational problems ahead.",
+  },
+];
+
+export const SERVICES = [
+  {
+    n: "01",
+    title: "Business Software",
+    text: "Purpose-built applications for everyday operations — stock, attendance, and the tools teams open every morning.",
+  },
+  {
+    n: "02",
+    title: "Payroll & Workforce",
+    text: "Reliable payroll workflows and workforce systems that support real teams at scale, including 500+ worker operations.",
+  },
+  {
+    n: "03",
+    title: "ERP & Operations",
+    text: "Connected tools for projects, sites, people, materials, and money — progress you can actually trust.",
+  },
+  {
+    n: "04",
+    title: "Websites & Interfaces",
+    text: "Thoughtful, functional websites and interfaces designed around the people who use them.",
+  },
+];

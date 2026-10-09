@@ -1,0 +1,86 @@
+import { Reveal } from "@/components/reveal";
+import { TIMELINE } from "@/lib/content";
+
+export function Philosophy() {
+  return (
+    <section aria-label="Philosophy" className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-24">
+      <Reveal className="max-w-3xl">
+        <p className="eyebrow text-primary">03 · Why it works</p>
+        <h2 className="mt-3 text-3xl font-bold leading-[1.1] text-text sm:text-5xl sm:leading-[1.06]">
+          Powerful software.
+          <br />
+          Without the unnecessary complexity.
+        </h2>
+        <p className="mt-5 max-w-2xl text-[15px] leading-7 text-text-muted sm:text-base">
+          The best software doesn&apos;t make people adapt to complicated systems. It
+          helps them do their jobs with confidence — whether managing inventory,
+          processing payroll, supervising a team, or overseeing an entire operation.
+          Clear, dependable, straightforward.
+        </p>
+      </Reveal>
+    </section>
+  );
+}
+
+export function Journey() {
+  return (
+    <section id="story" aria-label="Our journey" className="border-y hairline bg-surface">
+      <div className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-14 sm:px-6 sm:py-24">
+        <Reveal className="max-w-2xl">
+          <p className="eyebrow text-primary">04 · Our journey · 2022 — 2026</p>
+          <h2 className="mt-3 text-3xl font-bold text-text sm:text-[2.6rem] sm:leading-[1.05]">
+            Five years of solving real problems.
+          </h2>
+        </Reveal>
+        <ol className="mt-8 flex flex-col gap-0 sm:mt-10 lg:grid lg:grid-cols-5">
+          {TIMELINE.map((m, i) => (
+            <Reveal key={m.year} delay={i * 70}>
+              <li className={`relative border-l-2 py-5 pl-5 lg:border-l-0 lg:border-t-2 lg:py-0 lg:pl-0 lg:pr-6 lg:pt-5 ${i === 4 ? "border-primary" : "border-text"}`}>
+                <p className={`tnum text-3xl font-bold sm:text-4xl ${i === 4 ? "text-primary" : "text-text"}`}>
+                  &rsquo;{m.year.slice(2)}
+                  <span className="mt-1 block font-sans text-xs font-bold tracking-[0.18em] text-text-muted">{m.year}</span>
+                </p>
+                <h3 className="mt-3 text-[15px] font-bold text-text">{m.title}</h3>
+                <p className="mt-1.5 text-[13px] leading-6 text-text-muted">{m.text}</p>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}
+
+const POINTS = [
+  { t: "Built around real operations", d: "Solutions designed around how work actually happens — not demo flows." },
+  { t: "Usable by nontechnical teams", d: "Interfaces workers, supervisors, and owners can use with confidence." },
+  { t: "Trusted with complex workflows", d: "From muster to salary to stock — experience with money, people, and materials." },
+  { t: "Relationships, not tickets", d: "Reliable delivery and long-term client relationships since 2022." },
+  { t: "Support online & onsite", d: "Technical support online and onsite, where agreed with each client." },
+  { t: "Operating support, in writing", d: "Ongoing software operating support subject to the relevant service agreement." },
+];
+
+export function Why() {
+  return (
+    <section aria-label="Why OrangeDev" className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-24">
+      <Reveal className="max-w-2xl">
+        <p className="eyebrow text-primary">05 · Why OrangeDev</p>
+        <h2 className="mt-3 text-3xl font-bold text-text sm:text-[2.6rem] sm:leading-[1.05]">
+          Built to work.
+          <br />
+          Supported for the long run.
+        </h2>
+      </Reveal>
+      <div className="mt-8 grid gap-3 sm:mt-10 md:grid-cols-2 lg:grid-cols-3">
+        {POINTS.map((p, i) => (
+          <Reveal key={p.t} delay={i * 50}>
+            <div className="h-full rounded-2xl border hairline bg-surface p-5 sm:p-6">
+              <p className="text-[15px] font-bold text-text">{p.t}</p>
+              <p className="mt-2 text-sm leading-6 text-text-muted">{p.d}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
