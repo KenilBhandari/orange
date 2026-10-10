@@ -160,3 +160,54 @@ export const SERVICES = [
     text: "Thoughtful, functional websites and interfaces designed around the people who use them.",
   },
 ];
+
+export const PROCESS = [
+  {
+    n: "01",
+    title: "Understand the real work",
+    text: "We start with how your team actually works — the busiest hour, not the demo flow. One honest conversation is enough to begin.",
+  },
+  {
+    n: "02",
+    title: "Shape the simplest path",
+    text: "We map the smallest system that solves the problem: what stays, what goes, and what must never break.",
+  },
+  {
+    n: "03",
+    title: "Build in the open",
+    text: "Working software early, shared often. You see progress on real data, not slides — from storefront to payroll to ERP.",
+  },
+  {
+    n: "04",
+    title: "Prove it on a working day",
+    text: "We test with non-technical users doing real tasks — muster, salary, stock — until it feels obvious.",
+  },
+  {
+    n: "05",
+    title: "Support for the long run",
+    text: "Online and onsite support where agreed, in writing. Relationships since 2022, not tickets that close at handover.",
+  },
+];
+
+export const FAQS = [
+  {
+    q: "How do we start a project?",
+    a: "Tell us what needs to work better — one honest line is enough. We reply within one working day, align on the real problem, and propose the simplest path forward in plain language.",
+  },
+  {
+    q: "How long does typical work take?",
+    a: "Small tools and websites move in weeks; operational systems like payroll or ERP are phased so you get working software early. Timelines are agreed up front, in writing, before we build.",
+  },
+  {
+    q: "Who is the software designed for?",
+    a: "Non-technical teams first — workers, supervisors, and owners. If a first-time user can't use it with confidence on a busy day, we treat that as a design failure.",
+  },
+  {
+    q: "Do you provide support after delivery?",
+    a: "Yes — ongoing software operating support subject to the relevant service agreement, online and onsite where agreed with each client.",
+  },
+  {
+    q: "Can you show us client work or links?",
+    a: "Client systems handle sensitive operations data, so we show original conceptual illustrations on this site instead of live client links or screenshots. The work stories describe what was built and why.",
+  },
+];

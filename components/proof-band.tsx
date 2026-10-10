@@ -7,31 +7,33 @@ const FACTS = [
   "ERP for contractors",
 ];
 
-/** Brand band directly under the hero — the first full-colour Act II moment. */
+/** Quiet strip under the hero — capabilities at a glance. */
 export function ProofBand() {
   return (
     <section
       aria-label="Capabilities at a glance"
-      className="proof-band relative overflow-hidden border-b hairline text-white"
+      className="relative overflow-hidden border-b hairline bg-surface"
     >
-      <div className="marquee py-4 sm:py-5">
-        {[0, 1].map((copy) => (
-          <ul
-            key={copy}
-            aria-hidden={copy === 1 ? "true" : undefined}
-            className="flex shrink-0 items-center"
-          >
-            {FACTS.map((f) => (
-              <li
-                key={f}
-                className="flex items-center gap-7 whitespace-nowrap px-7 text-[13px] font-bold uppercase tracking-[0.2em] sm:text-sm"
-              >
-                {f}
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-current opacity-70" aria-hidden="true" />
-              </li>
-            ))}
-          </ul>
-        ))}
+      <div className="marquee-mask">
+        <div className="marquee py-3.5">
+          {[0, 1].map((copy) => (
+            <ul
+              key={copy}
+              aria-hidden={copy === 1 ? "true" : undefined}
+              className="flex shrink-0 items-center"
+            >
+              {FACTS.map((f) => (
+                <li
+                  key={f}
+                  className="flex items-center gap-6 whitespace-nowrap px-6 text-[12px] font-medium uppercase tracking-[0.1em] text-text-muted"
+                >
+                  {f}
+                  <span className="h-1 w-1 shrink-0 rounded-full bg-text-muted/40" aria-hidden="true" />
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
       </div>
     </section>
   );

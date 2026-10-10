@@ -4,6 +4,7 @@ import { Compare } from "@/components/compare";
 import { Services } from "@/components/services";
 import { Projects } from "@/components/projects";
 import { Philosophy, Journey, Why } from "@/components/sections";
+import { Process, Trust, Faq } from "@/components/calm";
 import { Closing } from "@/components/closing";
 
 export default function HomePage() {
@@ -14,9 +15,12 @@ export default function HomePage() {
       <Compare />
       <Services />
       <Projects />
+      <Process />
       <Philosophy />
       <Journey />
+      <Trust />
       <Why />
+      <Faq />
       <Closing />
     </div>
   );

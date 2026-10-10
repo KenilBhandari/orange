@@ -15,57 +15,50 @@ const ART = {
 export function Projects() {
   return (
     <section id="work" aria-label="Selected work" className="border-y hairline bg-surface">
-      <div className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-14 sm:px-6 sm:py-24">
-        <Reveal className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+      <div className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
+        <Reveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
-            <p className="eyebrow text-primary">02 · Selected work · 2022 → 2026</p>
-            <h2 className="mt-3 text-3xl font-bold text-text sm:text-[2.6rem] sm:leading-[1.05]">
-              The work is
-              <br />
-              the proof.
+            <p className="label-row">02 — Selected work · 2022 to 2026</p>
+            <h2 className="mt-4 text-3xl font-bold text-text sm:text-[2.5rem] sm:leading-[1.05]">
+              The work is the proof.
             </h2>
           </div>
-          <p className="max-w-sm text-[13px] leading-6 text-text-muted">
-            From a single storefront to enterprise operations. Each visual is an
-            original conceptual illustration — never a stock mockup.
+          <p className="max-w-sm text-[14px] leading-6 text-text-muted">
+            From a single storefront to enterprise operations. Shown as product interfaces, not stock mockups.
           </p>
         </Reveal>
 
-        <div className="mt-10 flex flex-col gap-14 sm:mt-14 sm:gap-20">
-          {PROJECTS.map((p, i) => {
+        <div className="mt-6 grid gap-4 sm:mt-10 sm:gap-5 lg:grid-cols-2">
+          {PROJECTS.map((p) => {
             const Art = ART[p.art];
-            const flip = i % 2 === 1;
             return (
-              <article key={p.slug} aria-label={`${p.name} project`} className="grid items-center gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-12">
-                <Reveal className={flip ? "lg:order-2" : ""}>
+              <article key={p.slug} aria-label={`${p.name} project`} className="group overflow-hidden rounded-[14px] border hairline bg-surface">
+                <div className="border-b hairline bg-[#f5f3ee]">
                   <Art />
-                </Reveal>
-                <Reveal delay={100} className={flip ? "lg:order-1" : ""}>
-                  <p className="tnum text-xs font-bold uppercase tracking-[0.16em] text-text-muted">
+                </div>
+                <div className="p-5 sm:p-6">
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-text-muted">
                     {p.index} · {p.category} · {p.year}
                   </p>
-                  <h3 className="mt-2 text-2xl font-bold text-text sm:text-4xl">
+                  <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em] text-text">
                     {p.name}
-                    <span className="text-primary">.</span>
                   </h3>
-                  <p className="mt-3 max-w-md text-[15px] leading-7 text-text">
+                  <p className="mt-2 text-[14px] leading-6 text-text">
                     {p.problem}
                   </p>
-                  <p className="mt-2 max-w-md text-sm leading-6 text-text-muted">
-                    OrangeDev contribution — {p.contribution}
+                  <p className="mt-1.5 text-[13px] leading-6 text-text-muted">
+                    {p.contribution}
                   </p>
-                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <div className="mt-4 flex items-center justify-between gap-3 border-t hairline pt-4">
                     <Link
                       href={`/work/${p.slug}`}
-                      className="btn-nudge press inline-flex items-center gap-1.5 rounded-lg bg-text px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary"
+                      className="inline-flex items-center gap-1.5 py-1 text-[15px] font-semibold text-text transition-colors hover:text-primary"
                     >
-                      Read the story <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      Read the story <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
                     </Link>
-                    <span className="inline-flex rounded-full border hairline px-3 py-1.5 text-[11px] font-semibold uppercase tracking-widest text-text-muted">
-                      {p.note}
-                    </span>
+                    <span className="text-[12px] font-medium text-text-muted">{p.note}</span>
                   </div>
-                </Reveal>
+                </div>
               </article>
             );
           })}

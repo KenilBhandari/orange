@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Check, X } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 
@@ -34,44 +33,62 @@ export function Compare() {
   return (
     <section
       aria-label="How we compare"
-      className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-24"
+      className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24"
     >
       <Reveal className="max-w-2xl">
-        <p className="eyebrow text-primary">The difference</p>
-        <h2 className="mt-3 text-3xl font-bold text-text sm:text-[2.6rem] sm:leading-[1.05]">
-          Software is sold on promises.
-          <br className="hidden sm:block" /> We made it simple to compare.
+        <p className="label-row">The difference</p>
+        <h2 className="mt-4 text-3xl font-bold text-text sm:text-[2.5rem] sm:leading-[1.05]">
+          Software is sold on promises. We made it simple to compare.
         </h2>
-        <p className="mt-4 max-w-xl text-[15px] leading-7 text-text-muted">
+        <p className="mt-3 max-w-xl text-[15px] leading-7 text-text-muted">
           Anyone can demo well. What matters is the week after go-live — when real
           people use the system on a real working day.
         </p>
       </Reveal>
 
-      <Reveal delay={80} className="mt-10 sm:mt-12">
-        <div className="overflow-hidden rounded-2xl border hairline bg-surface">
-          <div className="grid grid-cols-2">
-            <div className="border-r hairline bg-background px-4 py-3.5 sm:px-6">
-              <p className="eyebrow text-text-muted">Typical vendors</p>
+      <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-4 lg:grid-cols-2">
+        <Reveal>
+          <div className="h-full overflow-hidden rounded-[16px] border hairline bg-surface">
+            <div className="border-b hairline px-5 py-3.5 sm:px-6 sm:py-4">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-text-muted">Typical vendors</p>
             </div>
-            <div className="bg-primary-soft px-4 py-3.5 sm:px-6">
-              <p className="eyebrow text-primary">OrangeDev</p>
-            </div>
-            {ROWS.map((r) => (
-              <Fragment key={r.us}>
-                <div className="flex items-start gap-2.5 border-t border-r hairline bg-background px-4 py-4 sm:px-6 sm:py-5">
-                  <X className="mt-0.5 h-4 w-4 shrink-0 text-text-muted" aria-hidden="true" />
-                  <p className="text-[13px] leading-6 text-text-muted sm:text-sm">{r.them}</p>
-                </div>
-                <div className="flex items-start gap-2.5 border-t hairline bg-primary-soft px-4 py-4 sm:px-6 sm:py-5">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-                  <p className="text-[13px] font-semibold leading-6 text-text sm:text-sm">{r.us}</p>
-                </div>
-              </Fragment>
-            ))}
+            <ul>
+              {ROWS.map((r) => (
+                <li
+                  key={r.them}
+                  className="flex items-start gap-3 border-b hairline px-5 py-4 last:border-b-0 sm:px-6 sm:py-3.5"
+                >
+                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-text/[0.06]">
+                    <X className="h-3 w-3 text-text-muted" aria-hidden="true" />
+                  </span>
+                  <p className="text-[15px] leading-6 text-text-muted sm:text-[14px]">{r.them}</p>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+        <Reveal delay={80}>
+          <div className="h-full overflow-hidden rounded-[16px] text-white" style={{ background: "var(--ink)" }}>
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-3.5 sm:px-6 sm:py-4">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-white">OrangeDev</p>
+              <span className="text-[12px] font-semibold text-primary">Our standard</span>
+            </div>
+            <ul>
+              {ROWS.map((r) => (
+                <li
+                  key={r.us}
+                  className="flex items-start gap-3 border-b border-white/10 px-5 py-4 last:border-b-0 sm:px-6 sm:py-3.5"
+                >
+                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/25">
+                    <Check className="h-3 w-3 text-primary" aria-hidden="true" />
+                  </span>
+                  <p className="text-[15px] font-medium leading-6 text-white/90 sm:text-[14px]">{r.us}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }

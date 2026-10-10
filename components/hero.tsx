@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { OrangeMark, brandText } from "@/components/logo";
 import { WordmarkLockup } from "@/components/wordmark";
+import { Reveal } from "@/components/reveal";
+import { PayrollArt } from "@/components/illustrations";
 
 function clamp01(v: number) {
   return Math.min(1, Math.max(0, v));
@@ -30,8 +32,8 @@ function Ticks() {
             x2={x2}
             y2={y2}
             stroke="var(--text)"
-            strokeOpacity={i % 3 === 0 ? 0.4 : 0.18}
-            strokeWidth={i % 3 === 0 ? 2 : 1}
+            strokeOpacity={i % 3 === 0 ? 0.28 : 0.12}
+            strokeWidth={i % 3 === 0 ? 1.5 : 1}
           />
         );
       })}
@@ -82,122 +84,133 @@ export function Hero() {
   const reveal = clamp01((raw - 0.35) / 0.45);
 
   return (
-    <section ref={sectionRef} aria-label="Introduction" className="relative border-b hairline">
-      <div className="sticky top-16">
-        <div className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden">
-          <div className="blueprint absolute inset-0" aria-hidden="true" />
+    <>
+      <section ref={sectionRef} aria-label="Introduction" className="relative border-b hairline">
+        <div className="sticky top-16">
+          <div className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden">
+            <div className="blueprint absolute inset-0 opacity-40" aria-hidden="true" />
 
-          {/* Instrument corners */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 hidden justify-between px-8 pt-6 lg:flex" aria-hidden="true">
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-text-muted">
-              OrangeDev® — Est. 2022
-            </p>
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-text-muted">
-              {act2 ? <span className="text-primary">Act II — Brand</span> : "Act I — Mono"}
-            </p>
-          </div>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 hidden justify-between px-8 pb-6 lg:flex" aria-hidden="true">
-            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-text-muted">
-              {raw < 0.12 && "Restrained · Incomplete · Monochrome"}
-              {raw >= 0.12 && raw < 0.78 && "Assembling — arc descending"}
-              {raw >= 0.78 && "Complete — #EA580C / green arc"}
-            </p>
-            <p className="tnum font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-text-muted">
-              Assembly <span className={act2 ? "text-primary" : "text-text"}>{pct}%</span>
-            </p>
-          </div>
-
-          <div className="relative mx-auto w-full max-w-4xl px-4 py-8 text-center sm:px-6">
-            <p className="inline-flex items-center gap-2 rounded-full border hairline bg-surface px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-text-muted">
-              Software development, built around real work
-              <span className="brand-dot" aria-hidden="true" />
-            </p>
-
-            {/* The assembly */}
-            <div className="relative mx-auto mt-5 w-fit">
-              <svg
-                viewBox="0 0 400 400"
-                className="hidden w-[300px] sm:block lg:w-[340px]"
-                aria-hidden="true"
-              >
-                <circle cx="200" cy="200" r="190" fill="none" stroke="var(--text)" strokeOpacity="0.14" strokeWidth="1" />
-                <Ticks />
-                <circle
-                  cx="200"
-                  cy="200"
-                  r="190"
-                  fill="none"
-                  stroke="var(--primary)"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeDasharray={RING_C}
-                  strokeDashoffset={RING_C * (1 - motion)}
-                  opacity={0.25 + motion * 0.75}
-                  transform="rotate(-90 200 200)"
-                />
-                <circle
-                  cx={200 + RING_R * Math.cos(-Math.PI / 2 + motion * Math.PI * 2)}
-                  cy={200 + RING_R * Math.sin(-Math.PI / 2 + motion * Math.PI * 2)}
-                  r="4"
-                  fill="var(--primary)"
-                  opacity={motion > 0.02 ? 1 : 0}
-                />
-              </svg>
-              <div className="mx-auto w-[168px] py-4 sm:absolute sm:inset-0 sm:m-auto sm:w-[200px] sm:py-0 lg:w-[228px]">
-                <OrangeMark progress={motion} fluid label="OrangeDev logo assembling" />
-              </div>
-            </div>
-
-            <div className="mt-1 flex justify-center text-[1.7rem] sm:text-[2.2rem] lg:text-[2.5rem]" aria-label="OrangeDev">
-              <WordmarkLockup
-                orangeFill={brandText(motion, "orange")}
-                devFill={brandText(motion, "green")}
-              />
-            </div>
-            <p className="mt-3 min-h-5 text-xs text-text-muted lg:hidden" aria-live="polite">
-              {raw < 0.78 ? "Scroll — the mark is assembling." : "Complete: OrangeDev orange with its green arc."}
-            </p>
-
-            {/* Headline settles in once the mark has taken its colour. */}
-            <div
-              style={{
-                opacity: reveal,
-                transform: `translateY(${(1 - reveal) * 18}px)`,
-              }}
-            >
-              <h1 className="mx-auto mt-5 max-w-3xl text-[2rem] font-extrabold leading-[1.04] text-text sm:mt-7 sm:text-[2.9rem] lg:text-[3.7rem]">
-                Software that makes
-                <br />
-                work simpler.
-              </h1>
-              <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-text-muted sm:text-base sm:leading-7">
-                From everyday business tools to complete operational systems, we build
-                practical software that helps people stay organized and get more done.
+            <div className="relative mx-auto w-full max-w-3xl px-5 py-10 text-center sm:px-6 sm:py-16">
+              <p className="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-md border hairline bg-surface px-3 py-1.5 text-[11px] font-semibold uppercase leading-5 tracking-[0.08em] text-text-muted sm:text-[12px] sm:tracking-[0.1em]">
+                Software development, built around real work
+                <span className="brand-dot" aria-hidden="true" />
               </p>
-              <div className="mx-auto mt-6 flex max-w-md flex-col gap-2.5 sm:mt-8 sm:flex-row sm:justify-center">
-                <Link
-                  href="/contact"
-                  className="btn-nudge press cta-brand inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold text-white sm:py-3.5"
+
+              {/* The assembly — kept, but quieter */}
+              <div className="relative mx-auto mt-6 w-fit">
+                <svg
+                  viewBox="0 0 400 400"
+                  className="hidden w-[200px] sm:block lg:w-[220px]"
+                  aria-hidden="true"
                 >
-                  Discuss your project <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-                <Link
-                  href="/#work"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border hairline bg-surface px-6 py-3 text-[15px] font-semibold text-text transition-colors hover:border-primary hover:text-primary sm:py-3.5"
-                >
-                  Explore our work
-                </Link>
+                  <circle cx="200" cy="200" r="190" fill="none" stroke="var(--text)" strokeOpacity="0.1" strokeWidth="1" />
+                  <Ticks />
+                  <circle
+                    cx="200"
+                    cy="200"
+                    r="190"
+                    fill="none"
+                    stroke="var(--primary)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeDasharray={RING_C}
+                    strokeDashoffset={RING_C * (1 - motion)}
+                    opacity={0.25 + motion * 0.75}
+                    transform="rotate(-90 200 200)"
+                  />
+                  <circle
+                    cx={200 + RING_R * Math.cos(-Math.PI / 2 + motion * Math.PI * 2)}
+                    cy={200 + RING_R * Math.sin(-Math.PI / 2 + motion * Math.PI * 2)}
+                    r="4"
+                    fill="var(--primary)"
+                    opacity={motion > 0.02 ? 1 : 0}
+                  />
+                </svg>
+                <div className="mx-auto w-[112px] py-2 sm:absolute sm:inset-0 sm:m-auto sm:w-[136px] sm:py-0 lg:w-[148px]">
+                  <OrangeMark progress={motion} fluid label="OrangeDev logo assembling" />
+                </div>
+              </div>
+
+              <div className="mt-4 flex justify-center text-[1.15rem] sm:text-[1.7rem] lg:text-[1.8rem]" aria-label="OrangeDev">
+                <WordmarkLockup
+                  orangeFill={brandText(motion, "orange")}
+                  devFill={brandText(motion, "green")}
+                />
+              </div>
+              <p className="mt-3 text-[12px] font-medium tracking-[-0.01em] text-text-muted" aria-live="polite">
+                {act2 ? "Complete — OrangeDev in full colour." : `Assembling — ${pct}% · keep scrolling.`}
+              </p>
+
+              {/* Clean headline block */}
+              <div
+                style={{
+                  opacity: reveal,
+                  transform: `translateY(${(1 - reveal) * 24}px)`,
+                }}
+              >
+                <h1 className="display-tight mx-auto mt-7 max-w-3xl text-[2.4rem] font-bold leading-[1.02] text-text sm:mt-8 sm:text-6xl sm:leading-none lg:text-[4.75rem]">
+                  Software that makes work simpler.
+                </h1>
+                <p className="body-clean mx-auto mt-4 max-w-[34rem] text-base font-normal text-text-muted sm:mt-5 sm:text-[18px]">
+                  From everyday business tools to complete operational systems, we build
+                  practical software that helps people stay organized and get more done.
+                </p>
+                <div className="mx-auto mt-7 flex max-w-sm flex-col items-center gap-4 sm:mt-8 sm:max-w-md sm:flex-row sm:justify-center sm:gap-2.5">
+                  <Link
+                    href="/contact"
+                    className="btn-nudge press cta-brand inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg px-6 text-base font-semibold tracking-[-0.01em] text-white sm:h-11 sm:w-auto sm:text-[15px]"
+                  >
+                    Discuss your project <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                  <Link
+                    href="/#work"
+                    className="hidden h-11 items-center justify-center gap-2 rounded-lg border hairline bg-surface px-6 text-[15px] font-semibold tracking-[-0.01em] text-text transition-colors hover:border-text/30 sm:inline-flex"
+                  >
+                    Explore our work
+                  </Link>
+                  <Link
+                    href="/#work"
+                    className="group inline-flex items-center gap-1.5 py-1 text-[15px] font-semibold text-text-muted sm:hidden"
+                  >
+                    Explore our work
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+                  </Link>
+                </div>
+                <p className="mt-7 flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-xs font-medium tracking-[-0.01em] text-text-muted sm:mt-8 sm:text-[13px]">
+                  <span>Est. 2022</span>
+                  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-current opacity-30" />
+                  <span>E-commerce to ERP</span>
+                  <span aria-hidden="true" className="h-1 w-1 rounded-full bg-current opacity-30" />
+                  <span>Payroll for 500+ workers</span>
+                </p>
               </div>
             </div>
-
-            <p className="mt-7 hidden items-center justify-center gap-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-text-muted lg:flex">
-              <ArrowDown className="h-3.5 w-3.5" aria-hidden="true" />
-              Scroll — the mark assembles as you go
-            </p>
           </div>
         </div>
+        <div className="h-[30vh] sm:h-[46vh] lg:h-[85vh]" aria-hidden="true" />
+      </section>
+
+      {/* Product visual */}
+      <div className="relative mx-auto w-full max-w-3xl px-4 pt-8 sm:px-6 sm:pt-14">
+        <Reveal>
+          <div className="overflow-hidden rounded-[14px] border hairline bg-surface">
+            <PayrollArt />
+          </div>
+        </Reveal>
+        <Reveal delay={90}>
+          <p className="py-4 text-center text-[13px] font-medium text-text-muted">
+            <span className="font-bold text-text">Payroll Software · 2025</span>
+            {" — "}
+            <Link
+              href="/work/payroll-software"
+              className="group inline-flex items-center gap-1 font-semibold text-text transition-colors hover:text-primary"
+            >
+              Read the story
+              <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+            </Link>
+          </p>
+        </Reveal>
       </div>
-      <div className="h-[46vh] lg:h-[85vh]" aria-hidden="true" />
-    </section>
+    </>
   );
 }

@@ -1,75 +1,27 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { OrangeMark } from '@/components/logo';
 import { WordmarkLockup } from '@/components/wordmark';
-import styles from './nav-logo.module.css';
 
-/* Kodees-style reveal: expand shortly after landing on home, hold, retract.
-   Hover or keyboard focus expands it anywhere. */
-const INTRO_DELAY = 600;
-const HOLD_MS = 1400;
-
+/**
+ * Clean lockup — 30px mark + 19px wordmark, optically centered.
+ * Single flex row, no shadows, no nudges. The mark's viewBox has
+ * built-in padding so 30px renders like 26px of ink.
+ */
 export function NavLogo() {
-  const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-  const timers = useRef<number[]>([]);
-  const hovering = useRef(false);
-
-  useEffect(() => {
-    timers.current.forEach((t) => window.clearTimeout(t));
-    timers.current = [];
-    hovering.current = false;
-    setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (pathname !== '/') return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setOpen(true);
-      return;
-    }
-    timers.current = [
-      window.setTimeout(() => setOpen(true), INTRO_DELAY),
-      window.setTimeout(() => {
-        if (!hovering.current) setOpen(false);
-      }, INTRO_DELAY + 500 + HOLD_MS),
-    ];
-    return () => {
-      timers.current.forEach((t) => window.clearTimeout(t));
-      timers.current = [];
-    };
-  }, [pathname]);
-
   return (
     <Link
       href="/"
-      className={styles.logo}
-      data-open={open}
       aria-label="OrangeDev home"
       title="OrangeDev"
-      onMouseEnter={() => {
-        hovering.current = true;
-        setOpen(true);
-      }}
-      onMouseLeave={() => {
-        hovering.current = false;
-        setOpen(false);
-      }}
-      onFocus={() => setOpen(true)}
-      onBlur={() => setOpen(false)}
+      className="group flex h-10 shrink-0 select-none items-center gap-[10px] rounded-full pr-2 transition-opacity duration-200 hover:opacity-75"
     >
-      <span className={styles.mark} aria-hidden="true">
+      <span aria-hidden="true" className="flex h-[30px] w-[30px] items-center justify-center">
         <OrangeMark progress={1} size={30} label="" />
       </span>
-      <span className={styles.slider} aria-hidden="true">
-        <span className={styles.clip}>
-          <span className={styles.word}>
-            <WordmarkLockup orangeFill="#EA580C" devFill="#1c1c1c" />
-          </span>
-        </span>
+      <span aria-hidden="true" className="flex items-center text-[19px] leading-none">
+        <WordmarkLockup orangeFill="#EA580C" devFill="#1c1c1c" />
       </span>
     </Link>
   );
