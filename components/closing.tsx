@@ -73,6 +73,12 @@ export function Footer() {
               Software that makes work simpler — from everyday business tools to
               complete operational systems.
             </p>
+            <p className="mt-2 text-sm font-medium text-text-muted">
+              One working-day reply ·{" "}
+              <Link href="/contact" className="font-semibold text-text transition-colors hover:text-primary">
+                hello@orangedev.in
+              </Link>
+            </p>
           </div>
           <nav aria-label="Footer">
             <ul className="flex flex-wrap gap-x-5 gap-y-1 text-[15px] font-medium text-text-muted sm:text-sm">

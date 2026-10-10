@@ -28,13 +28,13 @@ export async function POST(req: Request) {
 
   if (!enquiry.name || !enquiry.contact || !enquiry.message) {
     return NextResponse.json(
-      { error: "Please fill your name, phone/email and a short message." },
+      { error: "Please add your name, phone or email, and a short message." },
       { status: 400 }
     );
   }
   if (enquiry.contact.length < 5) {
     return NextResponse.json(
-      { error: "That phone/email looks too short. Double-check it?" },
+      { error: "That phone or email looks too short — please double-check it." },
       { status: 400 }
     );
   }

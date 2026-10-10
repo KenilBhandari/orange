@@ -33,9 +33,16 @@ export function Services() {
                 {s.title}
               </h3>
               <p className="mt-2 text-[14px] leading-6 text-text-muted">{s.text}</p>
-              <p className="mt-4 border-t hairline pt-4 text-[12px] font-medium uppercase tracking-[0.08em] text-text-muted">
-                {TAGS[i % TAGS.length].join("  ·  ")}
-              </p>
+              <div className="mt-4 flex flex-wrap gap-1.5 border-t hairline pt-4">
+                {TAGS[i % TAGS.length].map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex items-center rounded-md border hairline bg-background px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
             </div>
           </Reveal>
         ))}

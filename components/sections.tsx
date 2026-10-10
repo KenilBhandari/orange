@@ -7,7 +7,7 @@ export function Philosophy() {
       <Reveal className="max-w-2xl">
         <p className="label-row">03 — Why it works</p>
         <h2 className="mt-4 text-3xl font-bold text-text sm:text-[2.5rem] sm:leading-[1.05]">
-          Powerful software, without the unnecessary complexity.
+          Powerful software, without unnecessary complexity.
         </h2>
         <p className="mt-3 max-w-2xl text-[15px] leading-7 text-text-muted">
           The best software doesn&apos;t make people adapt to complicated systems. It

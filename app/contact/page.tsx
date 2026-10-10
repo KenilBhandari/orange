@@ -41,7 +41,7 @@ function ContactForm() {
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.name.trim() || !form.contact.trim() || !form.message.trim()) {
-      setError("Please fill your name, phone/email and a short message.");
+      setError("Please add your name, phone or email, and a short message.");
       return;
     }
     setError("");
@@ -104,7 +104,7 @@ function ContactForm() {
             <input value={form.name} onChange={set("name")} placeholder="e.g. Priya Shah" className={inputCls} autoComplete="name" />
           </Field>
           <Field label="Phone or email" required>
-            <input value={form.contact} onChange={set("contact")} placeholder="+91 … or you@company.in" className={inputCls} autoComplete="email" />
+            <input value={form.contact} onChange={set("contact")} placeholder="e.g. +91 98200 45678 or you@company.in" className={inputCls} autoComplete="email" />
           </Field>
         </div>
         <Field label="Company / firm">

@@ -11,11 +11,12 @@ import { cn } from "@/lib/utils";
 const LINKS = [
   { label: "Work", href: "/#work", section: "work" },
   { label: "Solutions", href: "/#solutions", section: "solutions" },
+  { label: "Start", href: "/#start", section: "start" },
   { label: "Our story", href: "/#story", section: "story" },
   { label: "Contact", href: "/contact", section: null },
 ];
 
-const SECTIONS = ["solutions", "work", "story"];
+const SECTIONS = ["solutions", "work", "start", "story"];
 
 export function Navbar() {
   const [open, setOpen] = useState(false);

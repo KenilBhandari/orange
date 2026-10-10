@@ -45,6 +45,11 @@ function Badge({ tone, children }: { tone: "green" | "amber" | "gray"; children:
 }
 
 export function CommerceArt() {
+  const products: Array<[string, string, string]> = [
+    ["Handloom scarf", "In stock · SKU-01", "₹ 1,420"],
+    ["Brass lamp", "In stock · SKU-02", "₹ 1,800"],
+    ["Cotton kurta", "In stock · SKU-03", "₹ 2,180"],
+  ];
   return (
     <Frame url="store.orangedev.in/checkout">
       <svg viewBox="0 0 560 340" className="hidden h-auto w-full sm:block" role="img" aria-label="Storefront and checkout interface">
@@ -52,22 +57,22 @@ export function CommerceArt() {
         {/* store nav */}
         <rect x="20" y="14" width="360" height="40" rx="8" fill={PAPER} stroke={LINE} />
         <rect x="34" y="27" width="14" height="14" rx="4" fill={ORANGE} />
-        <text x="54" y="38" fontSize="11" fontWeight="700" fill={INK}>Store</text>
-        <text x="104" y="38" fontSize="10" fill={MUTED}>Shop</text>
-        <text x="140" y="38" fontSize="10" fill={MUTED}>Orders</text>
+        <text x="54" y="38" fontSize="11" fontWeight="700" fill={INK}>Craft Store</text>
+        <text x="130" y="38" fontSize="10" fill={MUTED}>Shop</text>
+        <text x="166" y="38" fontSize="10" fill={MUTED}>Orders</text>
         <rect x="250" y="26" width="70" height="16" rx="8" fill={CANVAS} />
-        <text x="260" y="37" fontSize="9" fill={FAINT}>Search…</text>
+        <text x="260" y="37" fontSize="9" fill={FAINT}>Search products…</text>
         <rect x="328" y="26" width="38" height="16" rx="4" fill={INK} />
         <text x="347" y="37" textAnchor="middle" fontSize="9" fontWeight="600" fill="#fff">Cart 3</text>
         {/* products */}
-        {[0, 1, 2].map((i) => (
-          <g key={i} transform={`translate(${20 + i * 122} 64)`}>
+        {products.map(([name, sub, price], i) => (
+          <g key={name} transform={`translate(${20 + i * 122} 64)`}>
             <rect width="114" height="150" rx="8" fill={PAPER} stroke={LINE} />
             <rect x="10" y="10" width="94" height="64" rx="6" fill={i === 1 ? "#fdeede" : ROW} stroke={LINE} />
             {i === 1 && <rect x="42" y="32" width="30" height="20" rx="4" fill={ORANGE} opacity="0.85" />}
-            <text x="10" y="92" fontSize="10" fontWeight="600" fill={INK}>Product {i + 1}</text>
-            <text x="10" y="105" fontSize="9" fill={MUTED}>In stock · SKU-0{i + 1}</text>
-            <text x="10" y="122" fontSize="11" fontWeight="700" fill={INK}>₹ {(1420 + i * 380).toLocaleString("en-IN")}</text>
+            <text x="10" y="92" fontSize="10" fontWeight="600" fill={INK}>{name}</text>
+            <text x="10" y="105" fontSize="9" fill={MUTED}>{sub}</text>
+            <text x="10" y="122" fontSize="11" fontWeight="700" fill={INK}>{price}</text>
             <rect x="10" y="128" width="94" height="14" rx="4" fill={i === 1 ? INK : PAPER} stroke={LINE} />
             <text x="57" y="138" textAnchor="middle" fontSize="8" fontWeight="600" fill={i === 1 ? "#fff" : MUTED}>Add to cart</text>
           </g>
@@ -99,9 +104,9 @@ export function CommerceArt() {
         <rect width="360" height="500" fill={CANVAS} />
         <rect x="16" y="12" width="328" height="44" rx="8" fill={PAPER} stroke={LINE} />
         <rect x="28" y="26" width="16" height="16" rx="4" fill={ORANGE} />
-        <text x="50" y="39" fontSize="13" fontWeight="700" fill={INK}>Store</text>
-        <text x="104" y="39" fontSize="11" fill={MUTED}>Shop</text>
-        <text x="148" y="39" fontSize="11" fill={MUTED}>Orders</text>
+        <text x="50" y="39" fontSize="13" fontWeight="700" fill={INK}>Craft Store</text>
+        <text x="140" y="39" fontSize="11" fill={MUTED}>Shop</text>
+        <text x="184" y="39" fontSize="11" fill={MUTED}>Orders</text>
         <rect x="256" y="24" width="76" height="20" rx="5" fill={INK} />
         <text x="294" y="38" textAnchor="middle" fontSize="10" fontWeight="600" fill="#fff">Cart 3</text>
         {[["Handloom scarf", "In stock · SKU-01", "₹ 1,420", 16], ["Brass lamp", "In stock · SKU-02", "₹ 1,800", 186]].map(([name, sub, price, x], i) => (
@@ -141,12 +146,12 @@ export function CommerceArt() {
 
 export function PresenceArt() {
   return (
-    <Frame url="client.co.uk/">
+    <Frame url="sample-studio.co.uk/">
       <svg viewBox="0 0 560 340" className="hidden h-auto w-full sm:block" role="img" aria-label="Website homepage interface">
         <rect width="560" height="340" fill={CANVAS} />
         <rect x="20" y="14" width="520" height="250" rx="8" fill={PAPER} stroke={LINE} />
         {/* nav */}
-        <text x="40" y="44" fontSize="11" fontWeight="700" fill={INK}>Client</text>
+        <text x="40" y="44" fontSize="11" fontWeight="700" fill={INK}>Meridian</text>
         <text x="380" y="44" fontSize="9" fill={MUTED}>Work</text>
         <text x="414" y="44" fontSize="9" fill={MUTED}>About</text>
         <text x="452" y="44" fontSize="9" fill={MUTED}>Contact</text>
@@ -174,7 +179,7 @@ export function PresenceArt() {
       <svg viewBox="0 0 360 500" className="block h-auto w-full sm:hidden" role="img" aria-label="Website homepage interface">
         <rect width="360" height="500" fill={CANVAS} />
         <rect x="16" y="12" width="328" height="220" rx="8" fill={PAPER} stroke={LINE} />
-        <text x="34" y="42" fontSize="13" fontWeight="700" fill={INK}>Client</text>
+        <text x="34" y="42" fontSize="13" fontWeight="700" fill={INK}>Meridian</text>
         <text x="296" y="42" fontSize="10" fill={MUTED}>Menu</text>
         <line x1="34" y1="56" x2="326" y2="56" stroke={LINE} />
         <text x="34" y="100" fontSize="25" fontWeight="700" fill={INK}>A presence</text>
@@ -224,7 +229,7 @@ export function TrippyArt() {
         </g>
         {/* fleet list */}
         <g transform="translate(330 14)">
-          {[["MH-04 · On route", "A → C · 42 min left", "green", 72], ["MH-11 · Loading", "Depot 2 · 10 min", "amber", 38], ["MH-07 · Scheduled", "Depot 1 · 08:30", "gray", 12]].map(([t, s, tone, w], i) => (
+          {[["Truck 04 · On route", "Route A → C · 42 min left", "green", 72], ["Truck 11 · Loading", "Depot 2 · 10 min", "amber", 38], ["Truck 07 · Scheduled", "Depot 1 · 08:30", "gray", 12]].map(([t, s, tone, w], i) => (
             <g key={t as string} transform={`translate(0 ${i * 80})`}>
               <rect width="210" height="70" rx="8" fill={PAPER} stroke={LINE} />
               <text x="12" y="24" fontSize="10" fontWeight="700" fill={INK}>{t}</text>
@@ -255,7 +260,7 @@ export function TrippyArt() {
             </g>
           ))}
         </g>
-        {[["MH-04 · On route", "A → C · 42 min left", 72, "#16a34a"], ["MH-11 · Loading", "Depot 2 · 10 min", 38, ORANGE], ["MH-07 · Scheduled", "Depot 1 · 08:30", 12, FAINT]].map(([t, s, w, c], i) => (
+        {[["Truck 04 · On route", "Route A → C · 42 min left", 72, "#16a34a"], ["Truck 11 · Loading", "Depot 2 · 10 min", 38, ORANGE], ["Truck 07 · Scheduled", "Depot 1 · 08:30", 12, FAINT]].map(([t, s, w, c], i) => (
           <g key={t as string} transform={`translate(16 ${220 + i * 100})`}>
             <rect width="328" height="90" rx="8" fill={PAPER} stroke={LINE} />
             <text x="16" y="30" fontSize="13" fontWeight="700" fill={INK}>{t}</text>
@@ -273,18 +278,18 @@ export function TrippyArt() {
 
 export function PayrollArt() {
   const rows: Array<[string, string, string, string, "green" | "amber"]> = [
-    ["AM", "A. Mason · #EMP-014", "26/26 days", "Paid", "green"],
-    ["SH", "S. Helper · #EMP-089", "Advance due", "Review", "amber"],
-    ["RF", "R. Fitter · #EMP-132", "OT 12h", "Ready", "green"],
-    ["KM", "K. Mazdoor · #EMP-207", "3 half-days", "Review", "amber"],
+    ["AM", "A. Mehta · #EMP-014", "26/26 days", "Paid", "green"],
+    ["SS", "S. Shah · #EMP-089", "Advance due", "Review", "amber"],
+    ["RR", "R. Rao · #EMP-132", "OT 12h", "Ready", "green"],
+    ["KM", "K. Menon · #EMP-207", "3 half-days", "Review", "amber"],
   ];
   return (
-    <Frame url="payroll.orangedev.in/runs/march">
+    <Frame url="payroll.orangedev.in/runs/march-2025">
       <svg viewBox="0 0 560 340" className="hidden h-auto w-full sm:block" role="img" aria-label="Payroll run interface">
         <rect width="560" height="340" fill={CANVAS} />
         <g transform="translate(20 14)">
           <rect width="330" height="250" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="14" y="26" fontSize="11" fontWeight="700" fill={INK}>March cycle</text>
+          <text x="14" y="26" fontSize="11" fontWeight="700" fill={INK}>March 2025</text>
           <text x="316" y="26" textAnchor="end" fontSize="9" fill={MUTED}>500+ workers</text>
           <line x1="0" y1="38" x2="330" y2="38" stroke={LINE} />
           <text x="48" y="54" fontSize="8" fontWeight="600" fill={FAINT}>EMPLOYEE</text>
@@ -325,12 +330,13 @@ export function PayrollArt() {
           <rect x="14" y="220" width="152" height="22" rx="6" fill={PAPER} stroke={LINE} />
           <text x="90" y="234" textAnchor="middle" fontSize="9" fontWeight="600" fill={MUTED}>Export statement</text>
         </g>
+        <text x="20" y="300" fontSize="10" fill={MUTED}>Attendance-linked pay, verified before approval.</text>
       </svg>
       <svg viewBox="0 0 360 560" className="block h-auto w-full sm:hidden" role="img" aria-label="Payroll run interface">
         <rect width="360" height="560" fill={CANVAS} />
         <g transform="translate(16 12)">
           <rect width="328" height="150" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="16" y="28" fontSize="11" fontWeight="600" fill={MUTED}>NET PAYABLE · MARCH</text>
+          <text x="16" y="28" fontSize="11" fontWeight="600" fill={MUTED}>NET PAYABLE · MARCH 2025</text>
           <text x="16" y="62" fontSize="28" fontWeight="700" fill={INK}>₹ 86.4L</text>
           <text x="16" y="82" fontSize="11" fill={MUTED}>● Verified · ready to pay</text>
           <rect x="16" y="94" width="296" height="40" rx="7" fill={ORANGE} />
@@ -338,10 +344,10 @@ export function PayrollArt() {
         </g>
         <g transform="translate(16 174)">
           <rect width="328" height="352" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="16" y="30" fontSize="13" fontWeight="700" fill={INK}>March cycle</text>
+          <text x="16" y="30" fontSize="13" fontWeight="700" fill={INK}>March 2025</text>
           <text x="312" y="30" textAnchor="end" fontSize="10" fill={MUTED}>500+ workers</text>
           <line x1="0" y1="44" x2="328" y2="44" stroke={LINE} />
-          {[["A. Mason · #EMP-014", "26/26 days", "Paid", true], ["S. Helper · #EMP-089", "Advance due", "Review", false], ["R. Fitter · #EMP-132", "OT 12h", "Ready", true]].map(([name, att, st, ok], i) => (
+          {[["A. Mehta · #EMP-014", "26/26 days", "Paid", true], ["S. Shah · #EMP-089", "Advance due", "Review", false], ["R. Rao · #EMP-132", "OT 12h", "Ready", true]].map(([name, att, st, ok], i) => (
             <g key={name as string} transform={`translate(0 ${58 + i * 98})`}>
               {i > 0 && <line x1="16" y1="0" x2="312" y2="0" stroke={LINE} opacity="0.6" />}
               <circle cx="34" cy="34" r="15" fill={ROW} stroke={LINE} />
@@ -357,6 +363,7 @@ export function PayrollArt() {
             </g>
           ))}
         </g>
+        <text x="16" y="544" fontSize="11" fill={MUTED}>Attendance-linked pay, verified before approval.</text>
       </svg>
     </Frame>
   );

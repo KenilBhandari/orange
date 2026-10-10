@@ -76,10 +76,10 @@ export function Hero() {
     };
   }, []);
 
-  // Motion follows the finger; colour restores in the second half,
+  // Motion follows the finger; color restores in the second half,
   // so the arc visibly settles before the brand arrives.
   const motion = 1 - Math.pow(1 - raw, 3);
-  const pct = String(Math.round(raw * 100)).padStart(3, "0");
+  const pct = String(Math.round(raw * 100));
   const act2 = raw >= 0.78;
   const reveal = clamp01((raw - 0.35) / 0.45);
 
@@ -138,7 +138,7 @@ export function Hero() {
                 />
               </div>
               <p className="mt-3 text-[12px] font-medium tracking-[-0.01em] text-text-muted" aria-live="polite">
-                {act2 ? "Complete — OrangeDev in full colour." : `Assembling — ${pct}% · keep scrolling.`}
+                {act2 ? "Complete — OrangeDev in full color." : `Assembling — ${pct}% · Keep scrolling.`}
               </p>
 
               {/* Clean headline block */}

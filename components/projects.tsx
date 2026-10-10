@@ -12,6 +12,15 @@ const ART = {
   erp: ErpArt,
 };
 
+/** Kraftbase-style card meta: industry + deliverable type, no invented metrics. */
+const META: Record<string, { industry: string; kind: string }> = {
+  "client-commerce": { industry: "Retail", kind: "Website" },
+  "uk-website": { industry: "International", kind: "Website" },
+  trippy: { industry: "Transport", kind: "Web app" },
+  "payroll-software": { industry: "Workforce", kind: "System" },
+  "contractor-erp": { industry: "Construction", kind: "ERP" },
+};
+
 export function Projects() {
   return (
     <section id="work" aria-label="Selected work" className="border-y hairline bg-surface">
@@ -31,15 +40,31 @@ export function Projects() {
         <div className="mt-6 grid gap-4 sm:mt-10 sm:gap-5 lg:grid-cols-2">
           {PROJECTS.map((p) => {
             const Art = ART[p.art];
+            const meta = META[p.slug];
             return (
-              <article key={p.slug} aria-label={`${p.name} project`} className="group overflow-hidden rounded-[14px] border hairline bg-surface">
-                <div className="border-b hairline bg-[#f5f3ee]">
+              <article key={p.slug} aria-label={`${p.name} project`} className="group overflow-hidden rounded-[14px] border hairline bg-surface transition-shadow duration-300 hover:shadow-glow">
+                <div className="border-b hairline bg-[#f5f3ee] transition-transform duration-500 ease-out group-hover:[&>div]:scale-[1.01]">
                   <Art />
                 </div>
                 <div className="p-5 sm:p-6">
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-text-muted">
-                    {p.index} · {p.category} · {p.year}
-                  </p>
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <span className="inline-flex items-center rounded-md bg-text px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-white">
+                      {p.category}
+                    </span>
+                    {meta && (
+                      <>
+                        <span className="inline-flex items-center rounded-md border hairline bg-background px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
+                          {meta.industry}
+                        </span>
+                        <span className="inline-flex items-center rounded-md border hairline bg-background px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
+                          {meta.kind}
+                        </span>
+                      </>
+                    )}
+                    <span className="ml-auto text-[12px] font-medium text-text-muted">
+                      {p.index} · {p.year}
+                    </span>
+                  </div>
                   <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em] text-text">
                     {p.name}
                   </h3>

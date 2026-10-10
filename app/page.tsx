@@ -5,6 +5,7 @@ import { Services } from "@/components/services";
 import { Projects } from "@/components/projects";
 import { Philosophy, Journey, Why } from "@/components/sections";
 import { Process, Trust, Faq } from "@/components/calm";
+import { Engage } from "@/components/engage";
 import { Closing } from "@/components/closing";
 
 export default function HomePage() {
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Services />
       <Projects />
       <Process />
+      <Engage />
       <Philosophy />
       <Journey />
       <Trust />

@@ -89,6 +89,16 @@ export function Compare() {
           </div>
         </Reveal>
       </div>
+
+      <Reveal delay={120}>
+        <p className="mx-auto mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-center text-[13px] font-medium text-text-muted sm:mt-8">
+          <span>Working software early — not slides</span>
+          <span aria-hidden="true" className="h-1 w-1 rounded-full bg-current opacity-30" />
+          <span>Scope agreed in writing</span>
+          <span aria-hidden="true" className="h-1 w-1 rounded-full bg-current opacity-30" />
+          <span>Support for the long run</span>
+        </p>
+      </Reveal>
     </section>
   );
 }
