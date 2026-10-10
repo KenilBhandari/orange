@@ -12,15 +12,6 @@ const ART = {
   erp: ErpArt,
 };
 
-/** Kraftbase style card meta: industry and deliverable type. */
-const META: Record<string, { industry: string; kind: string }> = {
-  "client-commerce": { industry: "Retail", kind: "Website" },
-  "uk-website": { industry: "International", kind: "Website" },
-  trippy: { industry: "Transport", kind: "Web app" },
-  "payroll-software": { industry: "Workforce", kind: "System" },
-  "contractor-erp": { industry: "Construction", kind: "ERP" },
-};
-
 export function Projects() {
   return (
     <section id="work" aria-label="Selected work" className="border-y hairline bg-surface">
@@ -41,43 +32,36 @@ export function Projects() {
         <div className="mt-6 grid gap-4 sm:mt-10 sm:gap-5 lg:grid-cols-2">
           {PROJECTS.map((p) => {
             const Art = ART[p.art];
-            const meta = META[p.slug];
             return (
               <article key={p.slug} aria-label={`${p.name} project`} className="group overflow-hidden rounded-lg border hairline bg-surface">
                 <div className="border-b hairline bg-[#f5f3ee]">
                   <Art />
                 </div>
-                <div className="p-5 sm:p-6">
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <span className="inline-flex items-center rounded-lg border hairline bg-background px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-text">
-                      {p.category}
-                    </span>
-                    {meta && (
-                      <>
-                        <span className="inline-flex items-center rounded-lg border hairline bg-background px-2 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-text-muted">
-                          {meta.industry}
-                        </span>
-                        <span className="inline-flex items-center rounded-lg border hairline bg-background px-2 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-text-muted">
-                          {meta.kind}
-                        </span>
-                      </>
-                    )}
-                    <span className="ml-auto text-[12px] font-medium text-text-muted">
-                      {p.index} · {p.year}
-                    </span>
-                  </div>
-                  <h3 className="mt-3 text-xl font-semibold tracking-[-0.02em] text-text">
-                    {p.name}
-                  </h3>
-                  <p className="mt-2 text-[15px] leading-6 text-text">
-                    {p.problem}
+                <div className="p-3 sm:p-6">
+                  {/* Phones show art + title only. Meta, description, and footer stay desktop-only. */}
+                  <p className="hidden truncate text-[12px] font-semibold uppercase tracking-[0.1em] text-text-muted sm:block">
+                    {p.category} · {p.year}
                   </p>
-                  <p className="mt-1.5 text-[14px] leading-6 text-text-muted">
-                    {p.contribution}
-                  </p>
-                  <div className="mt-4 flex items-center justify-between gap-3 border-t hairline pt-4">
+                  <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-text sm:mt-3 sm:text-xl">
                     <Link
                       href={`/work/${p.slug}`}
+                      aria-label={`${p.name}, read the story`}
+                      className="transition-colors active:text-primary sm:hover:text-primary"
+                    >
+                      {p.name}
+                    </Link>
+                  </h3>
+                  <p className="mt-1.5 hidden text-[15px] leading-6 text-text-muted sm:mt-2 sm:block">
+                    {p.problem}
+                  </p>
+                  <p className="mt-1.5 hidden text-[14px] leading-6 text-text-muted sm:block">
+                    {p.contribution}
+                  </p>
+                  <div className="mt-3 hidden items-center gap-3 border-t hairline pt-3 sm:mt-4 sm:flex sm:pt-4">
+                    <Link
+                      href={`/work/${p.slug}`}
+                      tabIndex={-1}
+                      aria-hidden="true"
                       className="inline-flex items-center gap-1.5 py-1 text-[15px] font-semibold text-text transition-colors hover:text-primary"
                     >
                       Read the story <ArrowRight className="h-4 w-4" aria-hidden="true" />

@@ -59,51 +59,67 @@ export function Engage() {
               <div
                 className={
                   plan.featured
-                    ? "relative h-full overflow-hidden rounded-lg border hairline bg-surface"
+                    ? "relative h-full overflow-hidden rounded-lg bg-[#FF6321]"
                     : "relative h-full overflow-hidden rounded-lg border hairline bg-background"
                 }
               >
-                {plan.featured && (
-                  <span aria-hidden="true" className="absolute inset-x-0 top-0 h-[3px] bg-primary" />
-                )}
                 <div
                   className={
                     plan.featured
-                      ? "flex items-center justify-between border-b hairline px-5 py-3.5 sm:px-6 sm:py-4"
+                      ? "flex items-center justify-between border-b border-white/25 px-5 py-3.5 sm:px-6 sm:py-4"
                       : "flex items-center justify-between border-b hairline px-5 py-3.5 sm:px-6 sm:py-4"
                   }
                 >
-                  <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-text-muted">
+                  <p
+                    className={
+                      plan.featured
+                        ? "text-[12px] font-semibold uppercase tracking-[0.1em] text-white"
+                        : "text-[12px] font-semibold uppercase tracking-[0.1em] text-text-muted"
+                    }
+                  >
                     {plan.tag}
                   </p>
-                  {plan.featured && (
-                    <span className="rounded-lg bg-primary px-2 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-white">
-                      Most common
-                    </span>
-                  )}
+                 
                 </div>
                 <div className="px-5 py-5 sm:px-6 sm:py-6">
-                  <h3 className="text-xl font-bold tracking-[-0.02em] text-text">
+                  <h3
+                    className={
+                      plan.featured
+                        ? "text-xl font-bold tracking-[-0.02em] text-white"
+                        : "text-xl font-bold tracking-[-0.02em] text-text"
+                    }
+                  >
                     {plan.title}
                   </h3>
-                  <p className="mt-2 text-[14px] leading-6 text-text-muted">
+                  <p
+                    className={
+                      plan.featured
+                        ? "mt-2 text-[14px] leading-6 text-white/90"
+                        : "mt-2 text-[14px] leading-6 text-text-muted"
+                    }
+                  >
                     {plan.text}
                   </p>
                   <ul className="mt-4 flex flex-col">
                     {plan.points.map((pt) => (
                       <li
                         key={pt}
-                        className="flex items-start gap-3 border-t hairline py-3 text-[14px] leading-6 text-text first:border-t-0 first:pt-0"
+                        className={
+                          plan.featured
+                            ? "flex items-start gap-3 border-t border-white/25 py-3 text-[14px] font-medium leading-6 text-white first:border-t-0 first:pt-0"
+                            : "flex items-start gap-3 border-t hairline py-3 text-[14px] leading-6 text-text first:border-t-0 first:pt-0"
+                        }
                       >
                         <span
                           className={
                             plan.featured
-                              ? "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-soft"
+                              ? "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white"
                               : "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-surface"
                           }
                         >
                           <Check
-                            className={plan.featured ? "h-3 w-3 text-primary" : "h-3 w-3 text-text"}
+                            className={plan.featured ? "h-3 w-3 text-[#FF6321]" : "h-3 w-3 text-text"}
+                            strokeWidth={plan.featured ? 3 : 2}
                             aria-hidden="true"
                           />
                         </span>
@@ -115,7 +131,7 @@ export function Engage() {
                     href="/contact"
                     className={
                       plan.featured
-                        ? "btn-nudge press mt-5 inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-lg bg-primary px-6 text-[15px] font-semibold text-white transition-colors hover:bg-primary-hover sm:w-auto sm:h-11"
+                        ? "btn-nudge press mt-5 inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-lg bg-white px-6 text-[15px] font-semibold text-[#FF6321] transition-colors hover:bg-white/90 sm:w-auto sm:h-11"
                         : "btn-nudge press mt-5 inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-lg border hairline bg-surface px-6 text-[15px] font-semibold text-text transition-colors hover:border-text/30 sm:w-auto sm:h-11"
                     }
                   >
