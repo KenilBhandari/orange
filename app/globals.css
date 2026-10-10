@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Geist + Geist Mono — self-hosted variable fonts (100–900). */
+/* Geist + Geist Mono: self-hosted variable fonts (100 to 900). */
 @font-face {
   font-family: "Geist Mono";
   font-style: normal;
@@ -85,10 +85,31 @@ body {
 
 /* Anchor jumps clear the sticky navbar on all viewports. */
 section[id] {
-  scroll-margin-top: 4.5rem;
+  scroll-margin-top: 5rem;
+}
+@media (min-width: 768px) {
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
 }
 
-/* 16px+ inputs on phones — smaller sizes trigger iOS auto-zoom on focus. */
+/* Mobile nav dropdown entrance: quick, no layout shift. */
+.nav-drop {
+  animation: nav-drop 0.16s ease-out;
+  transform-origin: top center;
+}
+@keyframes nav-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 16px+ inputs on phones: smaller sizes trigger iOS auto-zoom on focus. */
 input, select, textarea {
   font: inherit;
 }
@@ -125,10 +146,12 @@ p {
   transform: none;
 }
 
-/* Phones stay calm: fade in place, no staggered rise. */
+/* Phones stay calm and fast: short fade in place, no rise, no will-change. */
 @media (max-width: 639px) {
   .reveal {
     transform: none;
+    will-change: auto;
+    transition-duration: 0.4s;
   }
 }
 
@@ -242,8 +265,7 @@ p {
   margin-left: 0.35em;
   border-radius: 999px;
   background: var(--primary);
-  opacity: var(--brand-on);
-  transition: opacity 0.6s ease;
+  opacity: 1;
   vertical-align: middle;
 }
 
@@ -265,16 +287,18 @@ p {
   mask-image: radial-gradient(ellipse 95% 85% at 50% 42%, black 25%, transparent 78%);
   -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 42%, black 25%, transparent 78%);
 }
-
-/* Primary CTA: charcoal in Act I, brand orange once the mark completes. */
-.cta-brand {
-  background: var(--text);
-  transition: background-color 0.6s ease;
+/* Phones skip the masked grid entirely: saves paint, keeps hero clean. */
+@media (max-width: 639px) {
+  .blueprint {
+    display: none;
+  }
 }
-[data-brand="on"] .cta-brand {
+
+/* Primary CTA is always brand orange now (static hero, no scrub). */
+.cta-brand {
   background: var(--primary);
 }
-[data-brand="on"] .cta-brand:hover {
+.cta-brand:hover {
   background: var(--primary-hover);
 }
 
@@ -294,6 +318,14 @@ p {
 }
 .marquee:hover {
   animation-play-state: paused;
+}
+/* Phones: no infinite marquee, static row saves battery and calms layout. */
+@media (max-width: 639px) {
+  .marquee {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+  }
 }
 .marquee-mask {
   mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
@@ -324,5 +356,16 @@ p {
   }
   .marquee {
     animation: none !important;
+  }
+}
+
+/* Touch devices: no hover lift or arrow nudges, keeps cards stable. */
+@media (hover: none) {
+  .card-heaven:hover {
+    border-color: var(--border);
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-nudge:hover svg {
+    transform: none;
   }
 }

@@ -6,7 +6,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "OrangeDev — Software that makes work simpler",
+    default: "OrangeDev: Software that makes work simpler",
     template: "%s · OrangeDev",
   },
   description:
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-brand="off">
+    <html lang="en" data-brand="on">
       <body className="font-sans">
         <SmoothScroll>
           <Navbar />

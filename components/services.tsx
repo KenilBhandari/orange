@@ -10,21 +10,21 @@ const TAGS: string[][] = [
 
 export function Services() {
   return (
-    <section id="solutions" aria-label="What we build" className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
+    <section id="solutions" aria-label="What we build" className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-14 sm:px-6 sm:py-24">
       <Reveal className="max-w-2xl">
-        <p className="label-row">01 — What we build</p>
+        <p className="label-row">01 · What we build</p>
         <h2 className="mt-4 text-3xl font-bold text-text sm:text-[2.5rem] sm:leading-[1.05]">
-          Everyday tools to complete systems.
+          Everyday tools to complete systems<span className="text-primary">.</span>
         </h2>
         <p className="mt-3 max-w-xl text-[15px] leading-7 text-text-muted">
-          Four areas, one standard: software people can use with confidence — from
-          the site to the back office.
+          Four areas, one standard: software people can use with confidence, from
+          site to back office.
         </p>
       </Reveal>
-      <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-[14px] sm:border sm:bg-[var(--border)] md:grid-cols-2 hairline">
+      <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-lg sm:border sm:bg-[var(--border)] md:grid-cols-2 hairline">
         {SERVICES.map((s, i) => (
           <Reveal key={s.n} delay={i * 50}>
-            <div className="group h-full rounded-[14px] border bg-surface p-5 hairline sm:rounded-none sm:border-0 sm:p-7">
+            <div className="group h-full rounded-lg border bg-surface p-5 hairline sm:rounded-none sm:border-0 sm:p-7">
               <div className="flex items-baseline justify-between">
                 <span className="tnum text-[13px] font-semibold text-text-muted">{s.n}</span>
                 <span className="text-[13px] font-medium text-text-muted/60">0{i + 1} / 04</span>
@@ -37,7 +37,7 @@ export function Services() {
                 {TAGS[i % TAGS.length].map((t) => (
                   <span
                     key={t}
-                    className="inline-flex items-center rounded-md border hairline bg-background px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted"
+                    className="inline-flex items-center rounded-lg border hairline bg-background px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted"
                   >
                     {t}
                   </span>

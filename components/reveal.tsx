@@ -17,7 +17,11 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // Phones and reduced motion: show immediately, no observer cost.
+    if (
+      window.matchMedia("(max-width: 639px)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       el.classList.add("is-visible");
       return;
     }

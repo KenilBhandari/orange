@@ -20,7 +20,7 @@ function Frame({ url, children }: { url: string; children: React.ReactNode }) {
           <span className="h-2 w-2 rounded-full bg-[#ddd6c8] sm:h-2.5 sm:w-2.5" />
           <span className="h-2 w-2 rounded-full bg-[#ddd6c8] sm:h-2.5 sm:w-2.5" />
         </span>
-        <span className="min-w-0 flex-1 truncate rounded-md bg-background px-3 py-1 text-center text-[11px] font-medium text-text-muted">
+        <span className="min-w-0 flex-1 truncate rounded-lg bg-background px-3 py-1 text-center text-[11px] font-medium text-text-muted">
           {url}
         </span>
         <span className="hidden w-10 shrink-0 sm:block" aria-hidden="true" />
@@ -97,9 +97,9 @@ export function CommerceArt() {
           <rect x="14" y="200" width="114" height="22" rx="6" fill={PAPER} stroke={LINE} />
           <text x="71" y="214" textAnchor="middle" fontSize="9" fontWeight="600" fill={MUTED}>Continue shopping</text>
         </g>
-        <text x="20" y="300" fontSize="10" fill={MUTED}>Catalogue, cart and totals stay in sync — no dead ends.</text>
+        <text x="20" y="300" fontSize="10" fill={MUTED}>Catalogue, cart and totals stay in sync with no dead ends.</text>
       </svg>
-      {/* Mobile: stacked, large type — same story, readable at 360px. */}
+      {/* Mobile: stacked, large type. Same story, readable at 360px. */}
       <svg viewBox="0 0 360 500" className="block h-auto w-full sm:hidden" role="img" aria-label="Storefront and checkout interface">
         <rect width="360" height="500" fill={CANVAS} />
         <rect x="16" y="12" width="328" height="44" rx="8" fill={PAPER} stroke={LINE} />
@@ -240,7 +240,7 @@ export function TrippyArt() {
             </g>
           ))}
         </g>
-        <text x="20" y="300" fontSize="10" fill={MUTED}>Live dispatch with honest status — no phone chaos.</text>
+        <text x="20" y="300" fontSize="10" fill={MUTED}>Live dispatch with honest status and no phone chaos.</text>
       </svg>
       <svg viewBox="0 0 360 560" className="block h-auto w-full sm:hidden" role="img" aria-label="Transport dispatch board interface">
         <rect width="360" height="560" fill={CANVAS} />
@@ -406,7 +406,7 @@ export function ErpArt() {
             </g>
           ))}
         </g>
-        <text x="20" y="316" fontSize="10" fill={MUTED}>Projects, labour, materials and money — one coherent system.</text>
+        <text x="20" y="316" fontSize="10" fill={MUTED}>Projects, labour, materials and money in one coherent system.</text>
       </svg>
       <svg viewBox="0 0 360 620" className="block h-auto w-full sm:hidden" role="img" aria-label="Contractor ERP overview interface">
         <rect width="360" height="620" fill={CANVAS} />

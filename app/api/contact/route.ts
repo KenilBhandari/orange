@@ -34,7 +34,7 @@ export async function POST(req: Request) {
   }
   if (enquiry.contact.length < 5) {
     return NextResponse.json(
-      { error: "That phone or email looks too short — please double-check it." },
+      { error: "That phone or email looks too short. Please double check it." },
       { status: 400 }
     );
   }

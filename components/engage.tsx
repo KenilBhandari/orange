@@ -3,33 +3,33 @@ import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 
 /**
- * Two honest ways to start: a focused first build (Zero → One),
- * or a phased operational system (One → Scale).
- * No invented pricing or timelines — scope agreed in writing.
+ * Two honest ways to start: a focused first build (Zero to One),
+ * or a phased operational system (One to Scale).
+ * Light Kraftbase split, no full black blocks.
  */
 const PLANS = [
   {
-    tag: "Zero → One",
+    tag: "Zero to One",
     title: "Start small",
-    text: "One clear problem, one working tool. For teams establishing their first dependable system.",
+    text: "One clear problem, one working tool. For teams setting up their first dependable system.",
     points: [
       "Single workflow or website",
       "Working software shared early",
-      "Content-first, plain-language UI",
+      "Plain language UI",
       "Support agreed in writing",
     ],
     cta: "Describe the problem",
     featured: false,
   },
   {
-    tag: "One → Scale",
+    tag: "One to Scale",
     title: "Systems at scale",
-    text: "Connected operations — payroll, stock, sites, money — phased so you get value early.",
+    text: "Connected operations for payroll, stock, sites and money, phased so you get value early.",
     points: [
-      "Multi-module systems (payroll → ERP)",
+      "Multi module systems, payroll to ERP",
       "Phased delivery on real data",
-      "Tested with non-technical users",
-      "Online & onsite support where agreed",
+      "Tested with non technical users",
+      "Online and onsite support where agreed",
     ],
     cta: "Discuss your system",
     featured: true,
@@ -39,17 +39,17 @@ const PLANS = [
 export function Engage() {
   return (
     <section id="start" aria-label="Ways to work together" className="border-y hairline bg-surface scroll-mt-20">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-24">
         <Reveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
-            <p className="label-row">Engagement — two ways to start</p>
+            <p className="label-row">Engagement · Two ways to start</p>
             <h2 className="mt-4 text-3xl font-bold text-text sm:text-[2.5rem] sm:leading-[1.05]">
-              Start small, or scale with confidence.
+              Start small, or scale with confidence<span className="text-primary">.</span>
             </h2>
           </div>
           <p className="max-w-sm text-[14px] leading-6 text-text-muted">
             Scope is agreed in writing and can evolve week to week. First working
-            output early — not slides.
+            output early, not slides.
           </p>
         </Reveal>
 
@@ -59,67 +59,47 @@ export function Engage() {
               <div
                 className={
                   plan.featured
-                    ? "relative h-full overflow-hidden rounded-[16px] text-white"
-                    : "relative h-full overflow-hidden rounded-[16px] border hairline bg-background"
+                    ? "relative h-full overflow-hidden rounded-lg border hairline bg-surface"
+                    : "relative h-full overflow-hidden rounded-lg border hairline bg-background"
                 }
-                style={plan.featured ? { background: "var(--ink)" } : undefined}
               >
+                {plan.featured && (
+                  <span aria-hidden="true" className="absolute inset-x-0 top-0 h-[3px] bg-primary" />
+                )}
                 <div
                   className={
                     plan.featured
-                      ? "flex items-center justify-between border-b border-white/10 px-5 py-3.5 sm:px-6 sm:py-4"
+                      ? "flex items-center justify-between border-b hairline px-5 py-3.5 sm:px-6 sm:py-4"
                       : "flex items-center justify-between border-b hairline px-5 py-3.5 sm:px-6 sm:py-4"
                   }
                 >
-                  <p
-                    className={
-                      plan.featured
-                        ? "text-[12px] font-semibold uppercase tracking-[0.1em] text-white"
-                        : "text-[12px] font-semibold uppercase tracking-[0.1em] text-text-muted"
-                    }
-                  >
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-text-muted">
                     {plan.tag}
                   </p>
                   {plan.featured && (
-                    <span className="rounded-md bg-primary px-2 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-white">
+                    <span className="rounded-lg bg-primary px-2 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-white">
                       Most common
                     </span>
                   )}
                 </div>
                 <div className="px-5 py-5 sm:px-6 sm:py-6">
-                  <h3
-                    className={
-                      plan.featured
-                        ? "text-xl font-bold tracking-[-0.02em] text-white"
-                        : "text-xl font-bold tracking-[-0.02em] text-text"
-                    }
-                  >
+                  <h3 className="text-xl font-bold tracking-[-0.02em] text-text">
                     {plan.title}
                   </h3>
-                  <p
-                    className={
-                      plan.featured
-                        ? "mt-2 text-[14px] leading-6 text-white/65"
-                        : "mt-2 text-[14px] leading-6 text-text-muted"
-                    }
-                  >
+                  <p className="mt-2 text-[14px] leading-6 text-text-muted">
                     {plan.text}
                   </p>
                   <ul className="mt-4 flex flex-col">
                     {plan.points.map((pt) => (
                       <li
                         key={pt}
-                        className={
-                          plan.featured
-                            ? "flex items-start gap-3 border-t border-white/10 py-3 text-[14px] font-medium leading-6 text-white/90"
-                            : "flex items-start gap-3 border-t hairline py-3 text-[14px] leading-6 text-text"
-                        }
+                        className="flex items-start gap-3 border-t hairline py-3 text-[14px] leading-6 text-text first:border-t-0 first:pt-0"
                       >
                         <span
                           className={
                             plan.featured
-                              ? "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/25"
-                              : "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-text/[0.06]"
+                              ? "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-soft"
+                              : "mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-surface"
                           }
                         >
                           <Check
@@ -135,8 +115,8 @@ export function Engage() {
                     href="/contact"
                     className={
                       plan.featured
-                        ? "btn-nudge press mt-5 inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-primary px-6 py-3 text-[15px] font-semibold text-white transition-colors hover:bg-primary-hover sm:w-auto"
-                        : "btn-nudge press mt-5 inline-flex w-full items-center justify-center gap-1.5 rounded-lg border hairline bg-surface px-6 py-3 text-[15px] font-semibold text-text transition-colors hover:border-text/30 sm:w-auto"
+                        ? "btn-nudge press mt-5 inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-lg bg-primary px-6 text-[15px] font-semibold text-white transition-colors hover:bg-primary-hover sm:w-auto sm:h-11"
+                        : "btn-nudge press mt-5 inline-flex h-12 w-full items-center justify-center gap-1.5 rounded-lg border hairline bg-surface px-6 text-[15px] font-semibold text-text transition-colors hover:border-text/30 sm:w-auto sm:h-11"
                     }
                   >
                     {plan.cta} <ArrowRight className="h-4 w-4" aria-hidden="true" />

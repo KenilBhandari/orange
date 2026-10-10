@@ -12,7 +12,7 @@ const ART = {
   erp: ErpArt,
 };
 
-/** Kraftbase-style card meta: industry + deliverable type, no invented metrics. */
+/** Kraftbase style card meta: industry and deliverable type. */
 const META: Record<string, { industry: string; kind: string }> = {
   "client-commerce": { industry: "Retail", kind: "Website" },
   "uk-website": { industry: "International", kind: "Website" },
@@ -24,16 +24,17 @@ const META: Record<string, { industry: string; kind: string }> = {
 export function Projects() {
   return (
     <section id="work" aria-label="Selected work" className="border-y hairline bg-surface">
-      <div className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-14 sm:px-6 sm:py-24">
         <Reveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
-            <p className="label-row">02 — Selected work · 2022 to 2026</p>
+            <p className="label-row">02 · Selected work · 2022 to 2026</p>
             <h2 className="mt-4 text-3xl font-bold text-text sm:text-[2.5rem] sm:leading-[1.05]">
-              The work is the proof.
+              The work is the proof<span className="text-primary">.</span>
             </h2>
           </div>
           <p className="max-w-sm text-[14px] leading-6 text-text-muted">
-            From a single storefront to enterprise operations. Shown as product interfaces, not stock mockups.
+            From a single storefront to enterprise operations. Shown as product
+            interfaces with sample data.
           </p>
         </Reveal>
 
@@ -42,21 +43,21 @@ export function Projects() {
             const Art = ART[p.art];
             const meta = META[p.slug];
             return (
-              <article key={p.slug} aria-label={`${p.name} project`} className="group overflow-hidden rounded-[14px] border hairline bg-surface transition-shadow duration-300 hover:shadow-glow">
-                <div className="border-b hairline bg-[#f5f3ee] transition-transform duration-500 ease-out group-hover:[&>div]:scale-[1.01]">
+              <article key={p.slug} aria-label={`${p.name} project`} className="group overflow-hidden rounded-lg border hairline bg-surface">
+                <div className="border-b hairline bg-[#f5f3ee]">
                   <Art />
                 </div>
                 <div className="p-5 sm:p-6">
                   <div className="flex flex-wrap items-center gap-1.5">
-                    <span className="inline-flex items-center rounded-md bg-text px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-white">
+                    <span className="inline-flex items-center rounded-lg border hairline bg-background px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-text">
                       {p.category}
                     </span>
                     {meta && (
                       <>
-                        <span className="inline-flex items-center rounded-md border hairline bg-background px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
+                        <span className="inline-flex items-center rounded-lg border hairline bg-background px-2 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-text-muted">
                           {meta.industry}
                         </span>
-                        <span className="inline-flex items-center rounded-md border hairline bg-background px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
+                        <span className="inline-flex items-center rounded-lg border hairline bg-background px-2 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-text-muted">
                           {meta.kind}
                         </span>
                       </>
@@ -65,13 +66,13 @@ export function Projects() {
                       {p.index} · {p.year}
                     </span>
                   </div>
-                  <h3 className="mt-2 text-xl font-semibold tracking-[-0.02em] text-text">
+                  <h3 className="mt-3 text-xl font-semibold tracking-[-0.02em] text-text">
                     {p.name}
                   </h3>
-                  <p className="mt-2 text-[14px] leading-6 text-text">
+                  <p className="mt-2 text-[15px] leading-6 text-text">
                     {p.problem}
                   </p>
-                  <p className="mt-1.5 text-[13px] leading-6 text-text-muted">
+                  <p className="mt-1.5 text-[14px] leading-6 text-text-muted">
                     {p.contribution}
                   </p>
                   <div className="mt-4 flex items-center justify-between gap-3 border-t hairline pt-4">
@@ -79,7 +80,7 @@ export function Projects() {
                       href={`/work/${p.slug}`}
                       className="inline-flex items-center gap-1.5 py-1 text-[15px] font-semibold text-text transition-colors hover:text-primary"
                     >
-                      Read the story <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                      Read the story <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
                     <span className="text-[12px] font-medium text-text-muted">{p.note}</span>
                   </div>
@@ -88,6 +89,9 @@ export function Projects() {
             );
           })}
         </div>
+        <p className="mt-6 text-center text-[12px] leading-5 text-text-muted">
+          Client systems stay private. All previews use sample data.
+        </p>
       </div>
     </section>
   );

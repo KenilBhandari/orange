@@ -22,7 +22,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const p = getProject(params.slug);
   if (!p) return { title: "Project not found" };
   return {
-    title: `${p.name} — ${p.category}`,
+    title: `${p.name}: ${p.category}`,
     description: p.problem,
   };
 }
@@ -57,7 +57,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
 
       <section className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-14">
         <Reveal>
-          <div className="overflow-hidden rounded-[14px] border hairline bg-surface">
+          <div className="overflow-hidden rounded-lg border hairline bg-surface">
             <Art />
           </div>
         </Reveal>
@@ -74,7 +74,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </div>
           </Reveal>
           <Reveal delay={100}>
-            <div className="rounded-[14px] border hairline bg-surface p-5 sm:p-6 lg:sticky lg:top-24">
+            <div className="rounded-lg border hairline bg-surface p-5 sm:p-6 lg:sticky lg:top-24">
               <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-text-muted">What we built</h2>
               <ul className="mt-4 flex flex-col gap-3">
                 {project.points.map((pt) => (
@@ -95,13 +95,13 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </div>
 
         <nav aria-label="More projects" className="mt-10 grid gap-3 border-t hairline pt-6 sm:mt-14 sm:grid-cols-2">
-          <Link href={`/work/${prev.slug}`} className="group rounded-[14px] border hairline bg-surface p-5 transition-colors hover:border-text/30">
+          <Link href={`/work/${prev.slug}`} className="group rounded-lg border hairline bg-surface p-5 transition-colors hover:border-text/30">
             <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-text-muted">
               <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" aria-hidden="true" /> Previous
             </span>
             <span className="mt-1 block text-[17px] font-bold text-text group-hover:text-primary sm:text-lg">{prev.name}</span>
           </Link>
-          <Link href={`/work/${next.slug}`} className="group rounded-[14px] border hairline bg-surface p-5 transition-colors hover:border-text/30 sm:text-right">
+          <Link href={`/work/${next.slug}`} className="group rounded-lg border hairline bg-surface p-5 transition-colors hover:border-text/30 sm:text-right">
             <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-text-muted">
               Next <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </span>

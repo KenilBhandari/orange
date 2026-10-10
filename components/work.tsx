@@ -28,7 +28,7 @@ export function Work() {
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="text-sm text-text-muted">
-                    {p.name} — {p.category}
+                    {p.name}: {p.category}
                   </span>
                 </div>
                 <div className="absolute inset-0 ring-primary ring-offset-2 ring-offset-background transition-all duration-500 ease-out group-hover:ring-0" />

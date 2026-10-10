@@ -7,14 +7,27 @@ const FACTS = [
   "ERP for contractors",
 ];
 
-/** Quiet strip under the hero — capabilities at a glance. */
+/** Quiet strip under the hero. Static wrap on phones, marquee on desktop. */
 export function ProofBand() {
   return (
     <section
       aria-label="Capabilities at a glance"
       className="relative overflow-hidden border-b hairline bg-surface"
     >
-      <div className="marquee-mask">
+      {/* Mobile: calm static wrap, no animation */}
+      <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 px-4 py-4 sm:hidden">
+        {FACTS.map((f) => (
+          <li
+            key={f}
+            className="flex items-center gap-2 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.08em] text-text-muted"
+          >
+            <span className="h-1 w-1 shrink-0 rounded-full bg-text-muted/40" aria-hidden="true" />
+            {f}
+          </li>
+        ))}
+      </ul>
+      {/* Desktop: slow marquee */}
+      <div className="marquee-mask hidden sm:block">
         <div className="marquee py-3.5">
           {[0, 1].map((copy) => (
             <ul

@@ -8,22 +8,22 @@ import { cn } from "@/lib/utils";
 
 export function Process() {
   return (
-    <section aria-label="How we work" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+    <section aria-label="How we work" className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-24">
       <Reveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div className="max-w-xl">
-          <p className="label-row">How we work — 01 to 05</p>
+          <p className="label-row">How we work · 01 to 05</p>
           <h2 className="mt-4 text-3xl font-bold text-text sm:text-[2.5rem] sm:leading-[1.05]">
-            Calm process, dependable delivery.
+            Calm process, dependable delivery<span className="text-primary">.</span>
           </h2>
         </div>
         <p className="max-w-sm text-[14px] leading-6 text-text-muted">
-          No jargon, no big-bang reveals. Small steps, working software, support agreed in writing.
+          No jargon, no big reveals. Small steps, working software, support agreed in writing.
         </p>
       </Reveal>
-      <ol className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-[14px] sm:border sm:bg-[var(--border)] md:grid-cols-2 lg:grid-cols-5 hairline">
+      <ol className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-lg sm:border sm:bg-[var(--border)] md:grid-cols-2 lg:grid-cols-5 hairline">
         {PROCESS.map((s) => (
           <Reveal key={s.n} delay={0}>
-            <li className="h-full rounded-[14px] border bg-surface p-5 hairline sm:rounded-none sm:border-0">
+            <li className="h-full rounded-lg border bg-surface p-5 hairline sm:rounded-none sm:border-0">
               <span className="tnum text-[13px] font-semibold text-text-muted">
                 {s.n}
               </span>
@@ -38,29 +38,29 @@ export function Process() {
 }
 
 const ASSURANCES = [
-  { icon: Clock, t: "One working-day reply", d: "Every enquiry gets an honest, plain-language response within one working day." },
-  { icon: MessagesSquare, t: "Plain language, no jargon", d: "Built for non-technical teams — from muster to salary to stock." },
-  { icon: ShieldCheck, t: "Support agreed in writing", d: "Online and onsite support where agreed, since 2022 — for the long run." },
+  { icon: Clock, t: "One working day reply", d: "Every enquiry gets an honest, plain language response within one working day." },
+  { icon: MessagesSquare, t: "Plain language, no jargon", d: "Built for non technical teams, from muster to salary to stock." },
+  { icon: ShieldCheck, t: "Support agreed in writing", d: "Online and onsite support where agreed, since 2022, for the long run." },
 ];
 
 export function Trust() {
   return (
     <section aria-label="Why teams trust us" className="border-y hairline bg-surface">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+      <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-24">
         <Reveal className="max-w-2xl">
           <p className="label-row">Trust, earned since 2022</p>
           <h2 className="mt-4 text-3xl font-bold text-text sm:text-[2.5rem] sm:leading-[1.05]">
-            We could pitch you. Or let the work do it.
+            We could pitch you. Or let the work do it<span className="text-primary">.</span>
           </h2>
           <p className="mt-3 max-w-xl text-[15px] leading-7 text-text-muted">
-            E-commerce to ERP, UK websites to payroll for 500+ workers — one
+            E-commerce to ERP, UK websites to payroll for 500+ workers. One
             standard throughout: software people can use with confidence.
           </p>
         </Reveal>
-        <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-[14px] sm:border sm:bg-[var(--border)] md:grid-cols-3 hairline">
+        <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-lg sm:border sm:bg-[var(--border)] md:grid-cols-3 hairline">
           {ASSURANCES.map((a) => (
             <Reveal key={a.t} delay={0}>
-              <div className="h-full rounded-[14px] border bg-surface p-5 hairline sm:rounded-none sm:border-0 sm:p-6">
+              <div className="h-full rounded-lg border bg-surface p-5 hairline sm:rounded-none sm:border-0 sm:p-6">
                 <a.icon className="h-5 w-5 text-text" aria-hidden="true" />
                 <p className="mt-4 text-[15px] font-semibold text-text">{a.t}</p>
                 <p className="mt-1.5 text-sm leading-6 text-text-muted">{a.d}</p>
@@ -76,18 +76,18 @@ export function Trust() {
 export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section aria-label="Frequently asked questions" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+    <section aria-label="Frequently asked questions" className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6 sm:py-24">
       <div className="grid gap-6 lg:grid-cols-[1fr_1.6fr]">
         <Reveal className="max-w-sm">
           <p className="label-row">Before you ask</p>
           <h2 className="mt-4 text-3xl font-bold text-text sm:text-[2.2rem] sm:leading-[1.08]">
-            Questions, answered plainly.
+            Questions, answered plainly<span className="text-primary">.</span>
           </h2>
           <p className="mt-3 text-[14px] leading-6 text-text-muted">
-            Straight answers before the first call. Anything else — one working-day reply.
+            Straight answers before the first call. Anything else gets a one working day reply.
           </p>
         </Reveal>
-        <div className="flex flex-col rounded-[14px] border hairline bg-surface">
+        <div className="flex flex-col rounded-lg border hairline bg-surface">
           {FAQS.map((f, i) => {
             const isOpen = open === i;
             return (
@@ -101,7 +101,7 @@ export function Faq() {
                   <span className="text-base font-semibold text-text sm:text-[15px]">{f.q}</span>
                   <span
                     className={cn(
-                      "flex h-8 w-8 shrink-0 items-center justify-center rounded-md border hairline transition-colors",
+                      "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border hairline transition-colors",
                       isOpen ? "bg-text text-white" : "bg-surface text-text-muted"
                     )}
                   >
