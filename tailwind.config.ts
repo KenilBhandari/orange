@@ -14,6 +14,7 @@ const config: Config = {
           DEFAULT: "var(--primary)",
           hover: "var(--primary-hover)",
         },
+        "primary-soft": "var(--primary-soft)",
         brandgreen: "var(--brand-green)",
       },
       fontFamily: {

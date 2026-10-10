@@ -107,8 +107,15 @@ h1, h2, h3 {
 }
 
 .brand-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 0.35em;
+  border-radius: 999px;
+  background: var(--primary);
   opacity: var(--brand-on);
   transition: opacity 0.6s ease;
+  vertical-align: middle;
 }
 
 .hairline {
@@ -128,6 +135,38 @@ h1, h2, h3 {
   background-size: 44px 44px;
   mask-image: radial-gradient(ellipse 95% 85% at 50% 42%, black 25%, transparent 78%);
   -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 42%, black 25%, transparent 78%);
+}
+
+/* Primary CTA: charcoal in Act I, brand orange once the mark completes. */
+.cta-brand {
+  background: var(--text);
+  transition: background-color 0.6s ease;
+}
+[data-brand="on"] .cta-brand {
+  background: var(--primary);
+}
+[data-brand="on"] .cta-brand:hover {
+  background: var(--primary-hover);
+}
+
+/* Proof band: ink until the brand arrives, then OrangeDev orange. */
+.proof-band {
+  background: var(--ink);
+  transition: background-color 0.7s ease;
+}
+[data-brand="on"] .proof-band {
+  background: var(--primary);
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 46s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 ::selection {
@@ -150,5 +189,8 @@ input, select, textarea {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .marquee {
+    animation: none !important;
   }
 }

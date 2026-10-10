@@ -10,7 +10,8 @@ function clamp01(v: number) {
   return Math.min(1, Math.max(0, v));
 }
 
-const RING_C = 2 * Math.PI * 190;
+const RING_R = 190;
+const RING_C = 2 * Math.PI * RING_R;
 
 function Ticks() {
   return (
@@ -57,7 +58,7 @@ export function Hero() {
       const total = Math.max(1, rect.height - window.innerHeight * 0.8);
       const scrolled = clamp01(-rect.top / total);
       setRaw(scrolled);
-      document.documentElement.setAttribute("data-brand", scrolled > 0.78 ? "on" : "off");
+      document.documentElement.setAttribute("data-brand", scrolled >= 0.78 ? "on" : "off");
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -78,6 +79,7 @@ export function Hero() {
   const motion = 1 - Math.pow(1 - raw, 3);
   const pct = String(Math.round(raw * 100)).padStart(3, "0");
   const act2 = raw >= 0.78;
+  const reveal = clamp01((raw - 0.35) / 0.45);
 
   return (
     <section ref={sectionRef} aria-label="Introduction" className="relative border-b hairline">
@@ -106,12 +108,13 @@ export function Hero() {
           </div>
 
           <div className="relative mx-auto w-full max-w-4xl px-4 py-8 text-center sm:px-6">
-            <p className="eyebrow text-text-muted">
-              Software development, <span className="brand-dot text-primary">built around real work.</span>
+            <p className="inline-flex items-center gap-2 rounded-full border hairline bg-surface px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-text-muted">
+              Software development, built around real work
+              <span className="brand-dot" aria-hidden="true" />
             </p>
 
             {/* The assembly */}
-            <div className="relative mx-auto mt-2 w-fit">
+            <div className="relative mx-auto mt-5 w-fit">
               <svg
                 viewBox="0 0 400 400"
                 className="hidden w-[300px] sm:block lg:w-[340px]"
@@ -133,8 +136,8 @@ export function Hero() {
                   transform="rotate(-90 200 200)"
                 />
                 <circle
-                  cx={200 + 190 * Math.cos(-Math.PI / 2 + motion * Math.PI * 2)}
-                  cy={200 + 190 * Math.sin(-Math.PI / 2 + motion * Math.PI * 2)}
+                  cx={200 + RING_R * Math.cos(-Math.PI / 2 + motion * Math.PI * 2)}
+                  cy={200 + RING_R * Math.sin(-Math.PI / 2 + motion * Math.PI * 2)}
                   r="4"
                   fill="var(--primary)"
                   opacity={motion > 0.02 ? 1 : 0}
@@ -155,30 +158,41 @@ export function Hero() {
               {raw < 0.78 ? "Scroll — the mark is assembling." : "Complete: OrangeDev orange with its green arc."}
             </p>
 
-            <h1 className="mx-auto mt-6 max-w-2xl text-[1.9rem] font-bold leading-[1.08] text-text sm:mt-8 sm:text-5xl lg:text-[3.6rem] lg:leading-[1.04]">
-              Software that makes work simpler.
-            </h1>
-            <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-text-muted sm:mt-4 sm:text-base sm:leading-7">
-              From everyday business tools to complete operational systems, we build
-              practical software that helps people stay organized and get more done.
-            </p>
-            <div className="mx-auto mt-5 flex max-w-md flex-col gap-2.5 sm:mt-6 sm:flex-row sm:justify-center">
-              <Link
-                href="/contact"
-                className="btn-nudge press inline-flex items-center justify-center gap-1.5 rounded-lg bg-text px-5 py-2.5 text-[15px] font-semibold text-white transition-colors hover:bg-primary sm:py-3"
-              >
-                Discuss your project <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-              <Link
-                href="/#work"
-                className="inline-flex items-center justify-center rounded-lg border hairline bg-surface px-5 py-2.5 text-[15px] font-semibold text-text transition-colors hover:border-primary hover:text-primary sm:py-3"
-              >
-                Explore our work
-              </Link>
+            {/* Headline settles in once the mark has taken its colour. */}
+            <div
+              style={{
+                opacity: reveal,
+                transform: `translateY(${(1 - reveal) * 18}px)`,
+              }}
+            >
+              <h1 className="mx-auto mt-5 max-w-3xl text-[2rem] font-extrabold leading-[1.04] text-text sm:mt-7 sm:text-[2.9rem] lg:text-[3.7rem]">
+                Software that makes
+                <br />
+                work simpler.
+              </h1>
+              <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-text-muted sm:text-base sm:leading-7">
+                From everyday business tools to complete operational systems, we build
+                practical software that helps people stay organized and get more done.
+              </p>
+              <div className="mx-auto mt-6 flex max-w-md flex-col gap-2.5 sm:mt-8 sm:flex-row sm:justify-center">
+                <Link
+                  href="/contact"
+                  className="btn-nudge press cta-brand inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold text-white sm:py-3.5"
+                >
+                  Discuss your project <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/#work"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border hairline bg-surface px-6 py-3 text-[15px] font-semibold text-text transition-colors hover:border-primary hover:text-primary sm:py-3.5"
+                >
+                  Explore our work
+                </Link>
+              </div>
             </div>
-            <p className="mt-6 hidden items-center justify-center gap-1.5 text-xs text-text-muted lg:flex">
+
+            <p className="mt-7 hidden items-center justify-center gap-1.5 font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-text-muted lg:flex">
               <ArrowDown className="h-3.5 w-3.5" aria-hidden="true" />
-              Scroll — the mark assembles as you go.
+              Scroll — the mark assembles as you go
             </p>
           </div>
         </div>
