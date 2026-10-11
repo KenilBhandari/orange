@@ -6,7 +6,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "OrangeDev: Software that makes work simpler",
+    default: "OrangeDev",
     template: "%s · OrangeDev",
   },
   description:
