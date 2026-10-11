@@ -18,7 +18,7 @@ export function Projects() {
       <div className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-14 sm:px-6 sm:py-24">
         <Reveal className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="max-w-xl">
-            <p className="label-row">02 · Selected work · 2022 to 2026</p>
+            <p className="label-row">02 · Selected work · 2026 to 2022</p>
             <h2 className="mt-4 text-3xl font-bold text-text sm:text-[2.5rem] sm:leading-[1.05]">
               The work is the proof<span className="text-primary">.</span>
             </h2>

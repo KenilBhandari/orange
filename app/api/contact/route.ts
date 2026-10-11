@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 function pick(v: unknown, max: number) {
   return typeof v === "string" ? v.trim().slice(0, max) : "";
@@ -39,10 +40,44 @@ export async function POST(req: Request) {
     );
   }
 
-  const resendKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL ?? "OrangeDev <kenilbhandari@zohomail.in>";
+  const subject = `New enquiry: ${enquiry.name}${enquiry.company ? ` (${enquiry.company})` : ""}`;
+  const text = [
+    `Name: ${enquiry.name}`,
+    `Contact: ${enquiry.contact}`,
+    enquiry.company ? `Company: ${enquiry.company}` : null,
+    "",
+    enquiry.message,
+  ]
+    .filter(Boolean)
+    .join("\n");
 
+  // Zoho SMTP (preferred): ZOHO_EMAIL + ZOHO_APP_PASSWORD -> CONTACT_TO
+  const zohoUser = process.env.ZOHO_EMAIL;
+  const zohoPass = process.env.ZOHO_APP_PASSWORD;
+  const to = process.env.CONTACT_TO ?? process.env.CONTACT_TO_EMAIL;
+
+  if (zohoUser && zohoPass && to) {
+    try {
+      const transporter = nodemailer.createTransport({
+        host: "smtp.zoho.in",
+        port: 465,
+        secure: true,
+        auth: { user: zohoUser, pass: zohoPass },
+      });
+      await transporter.sendMail({ from: `OrangeDev <${zohoUser}>`, to, subject, text, replyTo: enquiry.contact.includes("@") ? enquiry.contact : undefined });
+    } catch (e) {
+      console.error("[contact] zoho send failed", e);
+      return NextResponse.json(
+        { error: "We could not send that just now. Email kenilbhandari@zohomail.in directly?" },
+        { status: 502 }
+      );
+    }
+    return NextResponse.json({ ok: true });
+  }
+
+  // Legacy Resend fallback.
+  const resendKey = process.env.RESEND_API_KEY;
+  const from = process.env.CONTACT_FROM_EMAIL ?? "OrangeDev <kenilbhandari@zohomail.in>";
   if (resendKey && to) {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -50,20 +85,7 @@ export async function POST(req: Request) {
         Authorization: `Bearer ${resendKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        from,
-        to,
-        subject: `New enquiry: ${enquiry.name}${enquiry.company ? ` (${enquiry.company})` : ""}`,
-        text: [
-          `Name: ${enquiry.name}`,
-          `Contact: ${enquiry.contact}`,
-          enquiry.company ? `Company: ${enquiry.company}` : null,
-          "",
-          enquiry.message,
-        ]
-          .filter(Boolean)
-          .join("\n"),
-      }),
+      body: JSON.stringify({ from, to, subject, text }),
     });
     if (!res.ok) {
       console.error("[contact] inbox forward failed", await res.text());
@@ -72,9 +94,9 @@ export async function POST(req: Request) {
         { status: 502 }
       );
     }
-  } else {
-    console.log("[contact enquiry]", enquiry);
+    return NextResponse.json({ ok: true });
   }
 
+  console.log("[contact enquiry] (no mail configured)", enquiry);
   return NextResponse.json({ ok: true });
 }

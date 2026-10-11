@@ -94,18 +94,18 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </Reveal>
         </div>
 
-        <nav aria-label="More projects" className="mt-10 grid gap-3 border-t hairline pt-6 sm:mt-14 sm:grid-cols-2">
-          <Link href={`/work/${prev.slug}`} className="group rounded-lg border hairline bg-surface p-5 transition-colors hover:border-text/30">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-text-muted">
-              <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" aria-hidden="true" /> Previous
+        <nav aria-label="More projects" className="mt-8 grid grid-cols-2 gap-2 border-t hairline pt-5 sm:mt-14 sm:gap-3 sm:pt-6">
+          <Link href={`/work/${prev.slug}`} className="group rounded-lg border hairline bg-surface p-3 transition-colors hover:border-text/30 sm:p-5">
+            <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.12em] text-text-muted sm:gap-1.5 sm:text-xs sm:tracking-[0.14em]">
+              <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" aria-hidden="true" /> Prev
             </span>
-            <span className="mt-1 block text-[17px] font-bold text-text group-hover:text-primary sm:text-lg">{prev.name}</span>
+            <span className="mt-1 block truncate text-[15px] font-bold text-text group-hover:text-primary sm:text-lg">{prev.name}</span>
           </Link>
-          <Link href={`/work/${next.slug}`} className="group rounded-lg border hairline bg-surface p-5 transition-colors hover:border-text/30 sm:text-right">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-text-muted">
+          <Link href={`/work/${next.slug}`} className="group rounded-lg border hairline bg-surface p-3 text-right transition-colors hover:border-text/30 sm:p-5">
+            <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.12em] text-text-muted sm:gap-1.5 sm:text-xs sm:tracking-[0.14em]">
               Next <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </span>
-            <span className="mt-1 block text-[17px] font-bold text-text group-hover:text-primary sm:text-lg">{next.name}</span>
+            <span className="mt-1 block truncate text-[15px] font-bold text-text group-hover:text-primary sm:text-lg">{next.name}</span>
           </Link>
         </nav>
       </section>

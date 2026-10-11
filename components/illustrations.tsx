@@ -6,6 +6,8 @@ const PAPER = "#ffffff";
 const CANVAS = "#f5f3ee";
 const ROW = "#faf8f4";
 const ORANGE = "#ea580c";
+const BLUE = "#2563eb";
+const BLUE_BG = "#e8eefc";
 const GREEN_BG = "#e8f5ec";
 const GREEN_TX = "#15803d";
 const AMBER_BG = "#fdf0e2";
@@ -44,233 +46,300 @@ function Badge({ tone, children }: { tone: "green" | "amber" | "gray"; children:
   );
 }
 
+/* Client Commerce — mobile storefront as shipped: tab bar, welcome KPIs, 2-col product grid. */
 export function CommerceArt() {
   const products: Array<[string, string, string]> = [
-    ["Handloom scarf", "In stock · SKU-01", "₹ 1,420"],
-    ["Brass lamp", "In stock · SKU-02", "₹ 1,800"],
-    ["Cotton kurta", "In stock · SKU-03", "₹ 2,180"],
+    ["Essence Mascara", "★ 2.56 · Essence", "₹ 9.99"],
+    ["Eyeshadow Palette", "★ 2.86 · Glamour", "₹ 19.99"],
+    ["Powder Canister", "★ 4.64 · Velvet", "₹ 14.99"],
   ];
+  const tabs = ["DASHBOARD", "PRODUCTS", "CART", "PROFILE"];
   return (
-    <Frame url="store.orangedev.in/checkout">
-      <svg viewBox="0 0 560 340" className="hidden h-auto w-full sm:block" role="img" aria-label="Storefront and checkout interface">
+    <Frame url="store.orangedev.in/products">
+      <svg viewBox="0 0 560 340" className="hidden h-auto w-full sm:block" role="img" aria-label="Commerce storefront with tabs, overview and product grid">
         <rect width="560" height="340" fill={CANVAS} />
-        {/* store nav */}
-        <rect x="20" y="14" width="360" height="40" rx="8" fill={PAPER} stroke={LINE} />
-        <rect x="34" y="27" width="14" height="14" rx="4" fill={ORANGE} />
-        <text x="54" y="38" fontSize="11" fontWeight="700" fill={INK}>Craft Store</text>
-        <text x="130" y="38" fontSize="10" fill={MUTED}>Shop</text>
-        <text x="166" y="38" fontSize="10" fill={MUTED}>Orders</text>
-        <rect x="250" y="26" width="70" height="16" rx="8" fill={CANVAS} />
-        <text x="260" y="37" fontSize="9" fill={FAINT}>Search products…</text>
-        <rect x="328" y="26" width="38" height="16" rx="4" fill={INK} />
-        <text x="347" y="37" textAnchor="middle" fontSize="9" fontWeight="600" fill="#fff">Cart 3</text>
+        {/* tab bar */}
+        <g transform="translate(20 12)">
+          <rect width="360" height="36" rx="8" fill={PAPER} stroke={LINE} />
+          {tabs.map((t, i) => (
+            <g key={t} transform={`translate(${14 + i * 88} 0)`}>
+              <text y="16" fontSize="8" fontWeight="700" fill={i === 1 ? BLUE : FAINT}>{t}</text>
+              {i === 1 && <rect y="24" width="52" height="3" rx="1.5" fill={BLUE} />}
+            </g>
+          ))}
+          <rect x="296" y="8" width="52" height="20" rx="10" fill={BLUE_BG} />
+          <text x="322" y="22" textAnchor="middle" fontSize="9" fontWeight="700" fill={BLUE}>Hi, kenil</text>
+        </g>
+        <g transform="translate(20 60)">
+          <rect width="360" height="86" rx="8" fill={PAPER} stroke={LINE} />
+          <text x="14" y="22" fontSize="8" fontWeight="700" fill={BLUE}>OVERVIEW</text>
+          <text x="14" y="42" fontSize="14" fontWeight="700" fill={INK}>Welcome, kenil.</text>
+          <text x="14" y="58" fontSize="9" fill={MUTED}>Track inventory, carts, storefront.</text>
+          <rect x="230" y="20" width="116" height="46" rx="6" fill={ROW} stroke={LINE} />
+          <text x="242" y="38" fontSize="8" fill={MUTED}>CART ITEMS · 5</text>
+          <text x="242" y="54" fontSize="10" fontWeight="700" fill={INK}>₹ 4205.32</text>
+        </g>
+        {/* KPI cards */}
+        <g transform="translate(392 12)">
+          <rect width="148" height="62" rx="8" fill={PAPER} stroke={LINE} />
+          <text x="12" y="20" fontSize="8" fill={MUTED}>CART ITEMS</text>
+          <text x="12" y="44" fontSize="20" fontWeight="700" fill={INK}>5</text>
+          <rect y="70" width="148" height="62" rx="8" fill={PAPER} stroke={LINE} />
+          <text x="12" y="90" fontSize="8" fill={MUTED}>CART VALUE</text>
+          <text x="12" y="112" fontSize="16" fontWeight="700" fill={INK}>₹ 4205.32</text>
+          <rect y="140" width="148" height="86" rx="8" fill={PAPER} stroke={LINE} />
+          <text x="12" y="160" fontSize="8" fontWeight="700" fill={BLUE}>QUICK ACTIONS</text>
+          {["Browse products", "Review cart"].map((a, i) => (
+            <g key={a} transform={`translate(12 ${170 + i * 26})`}>
+              <rect width="124" height="20" rx="5" fill={ROW} stroke={LINE} />
+              <text x="10" y="14" fontSize="9" fontWeight="600" fill={INK}>{a}</text>
+            </g>
+          ))}
+        </g>
         {/* products */}
         {products.map(([name, sub, price], i) => (
-          <g key={name} transform={`translate(${20 + i * 122} 64)`}>
-            <rect width="114" height="150" rx="8" fill={PAPER} stroke={LINE} />
-            <rect x="10" y="10" width="94" height="64" rx="6" fill={i === 1 ? "#fdeede" : ROW} stroke={LINE} />
-            {i === 1 && <rect x="42" y="32" width="30" height="20" rx="4" fill={ORANGE} opacity="0.85" />}
-            <text x="10" y="92" fontSize="10" fontWeight="600" fill={INK}>{name}</text>
-            <text x="10" y="105" fontSize="9" fill={MUTED}>{sub}</text>
-            <text x="10" y="122" fontSize="11" fontWeight="700" fill={INK}>{price}</text>
-            <rect x="10" y="128" width="94" height="14" rx="4" fill={i === 1 ? INK : PAPER} stroke={LINE} />
-            <text x="57" y="138" textAnchor="middle" fontSize="8" fontWeight="600" fill={i === 1 ? "#fff" : MUTED}>Add to cart</text>
+          <g key={name} transform={`translate(${20 + i * 122} 178)`}>
+            <rect width="114" height="146" rx="8" fill={PAPER} stroke={LINE} />
+            <rect x="10" y="10" width="94" height="52" rx="6" fill={ROW} stroke={LINE} />
+            <rect x="38" y="28" width="38" height="16" rx="4" fill={INK} opacity="0.12" />
+            <text x="10" y="78" fontSize="7" fontWeight="600" fill={FAINT}>BEAUTY</text>
+            <text x="10" y="90" fontSize="9" fontWeight="600" fill={INK}>{name.split(" ")[0]}</text>
+            <text x="10" y="101" fontSize="9" fontWeight="600" fill={INK}>{name.split(" ").slice(1).join(" ") || " "}</text>
+            <text x="10" y="113" fontSize="9" fontWeight="700" fill={INK}>{price}</text>
+            <rect x="10" y="120" width="46" height="16" rx="4" fill={PAPER} stroke={LINE} />
+            <text x="33" y="131" textAnchor="middle" fontSize="7" fontWeight="600" fill={MUTED}>DETAILS</text>
+            <rect x="58" y="120" width="46" height="16" rx="4" fill={INK} />
+            <text x="81" y="131" textAnchor="middle" fontSize="7" fontWeight="700" fill="#fff">ADD</text>
+            <text x="10" y="143" fontSize="7" fill={FAINT}>{sub}</text>
           </g>
         ))}
-        {/* summary */}
-        <g transform="translate(398 14)">
-          <rect width="142" height="236" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="14" y="24" fontSize="11" fontWeight="700" fill={INK}>Order summary</text>
-          <text x="14" y="38" fontSize="9" fill={MUTED}>3 items · #ORD-2481</text>
-          <line x1="14" y1="48" x2="128" y2="48" stroke={LINE} />
-          {[["Subtotal", "₹ 4,280"], ["Delivery", "Free"], ["GST (5%)", "₹ 214"]].map(([k, v], i) => (
-            <g key={k} transform={`translate(14 ${70 + i * 22})`}>
-              <text fontSize="10" fill={MUTED}>{k}</text>
-              <text x="114" textAnchor="end" fontSize="10" fontWeight="600" fill={INK}>{v}</text>
-            </g>
-          ))}
-          <line x1="14" y1="140" x2="128" y2="140" stroke={LINE} />
-          <text x="14" y="158" fontSize="10" fontWeight="600" fill={INK}>Total</text>
-          <text x="128" y="158" textAnchor="end" fontSize="12" fontWeight="700" fill={INK}>₹ 4,494</text>
-          <rect x="14" y="170" width="114" height="24" rx="6" fill={ORANGE} />
-          <text x="71" y="185" textAnchor="middle" fontSize="10" fontWeight="700" fill="#fff">Checkout</text>
-          <rect x="14" y="200" width="114" height="22" rx="6" fill={PAPER} stroke={LINE} />
-          <text x="71" y="214" textAnchor="middle" fontSize="9" fontWeight="600" fill={MUTED}>Continue shopping</text>
-        </g>
-        <text x="20" y="300" fontSize="10" fill={MUTED}>Catalogue, cart and totals stay in sync with no dead ends.</text>
       </svg>
-      {/* Mobile: stacked, large type. Same story, readable at 360px. */}
-      <svg viewBox="0 0 360 500" className="block h-auto w-full sm:hidden" role="img" aria-label="Storefront and checkout interface">
-        <rect width="360" height="500" fill={CANVAS} />
-        <rect x="16" y="12" width="328" height="44" rx="8" fill={PAPER} stroke={LINE} />
-        <rect x="28" y="26" width="16" height="16" rx="4" fill={ORANGE} />
-        <text x="50" y="39" fontSize="13" fontWeight="700" fill={INK}>Craft Store</text>
-        <text x="140" y="39" fontSize="11" fill={MUTED}>Shop</text>
-        <text x="184" y="39" fontSize="11" fill={MUTED}>Orders</text>
-        <rect x="256" y="24" width="76" height="20" rx="5" fill={INK} />
-        <text x="294" y="38" textAnchor="middle" fontSize="10" fontWeight="600" fill="#fff">Cart 3</text>
-        {[["Handloom scarf", "In stock · SKU-01", "₹ 1,420", 16], ["Brass lamp", "In stock · SKU-02", "₹ 1,800", 186]].map(([name, sub, price, x], i) => (
-          <g key={name as string} transform={`translate(${x} 66)`}>
-            <rect width="158" height="186" rx="8" fill={PAPER} stroke={LINE} />
-            <rect x="12" y="12" width="134" height="84" rx="6" fill={i === 0 ? "#fdeede" : ROW} stroke={LINE} />
-            {i === 0 && <rect x="64" y="44" width="30" height="20" rx="4" fill={ORANGE} opacity="0.85" />}
-            <text x="12" y="114" fontSize="12" fontWeight="600" fill={INK}>{name}</text>
-            <text x="12" y="129" fontSize="10" fill={MUTED}>{sub}</text>
-            <text x="12" y="150" fontSize="14" fontWeight="700" fill={INK}>{price}</text>
-            <rect x="12" y="156" width="134" height="20" rx="5" fill={i === 0 ? INK : PAPER} stroke={LINE} />
-            <text x="79" y="170" textAnchor="middle" fontSize="10" fontWeight="600" fill={i === 0 ? "#fff" : MUTED}>Add to cart</text>
+      {/* Mobile: true to shipped app — tabs, welcome, KPIs, 2-col grid */}
+      <svg viewBox="0 0 360 520" className="block h-auto w-full sm:hidden" role="img" aria-label="Commerce storefront mobile layout">
+        <rect width="360" height="520" fill={CANVAS} />
+        <rect x="0" y="0" width="360" height="52" fill={PAPER} stroke={LINE} />
+        {tabs.map((t, i) => (
+          <g key={t} transform={`translate(${52 + i * 85} 0)`}>
+            <text y="22" textAnchor="middle" fontSize="8.5" fontWeight="700" fill={i === 1 ? BLUE : FAINT}>{t}</text>
+            {i === 1 && <rect x="-24" y="34" width="48" height="3" rx="1.5" fill={BLUE} />}
           </g>
         ))}
-        <g transform="translate(16 262)">
-          <rect width="328" height="196" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="14" y="26" fontSize="13" fontWeight="700" fill={INK}>Order summary</text>
-          <text x="314" y="26" textAnchor="end" fontSize="10" fill={MUTED}>#ORD-2481</text>
-          <line x1="14" y1="52" x2="314" y2="52" stroke={LINE} />
-          {[["Subtotal · 3 items", "₹ 4,280"], ["Delivery", "Free"], ["GST (5%)", "₹ 214"]].map(([k, v], i) => (
-            <g key={k} transform={`translate(14 ${72 + i * 20})`}>
-              <text fontSize="11" fill={MUTED}>{k}</text>
-              <text x="300" textAnchor="end" fontSize="11" fontWeight="600" fill={INK}>{v}</text>
+        <g transform="translate(16 68)">
+          <rect width="328" height="108" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="16" y="24" fontSize="10" fontWeight="700" fill={BLUE}>OVERVIEW</text>
+          <text x="16" y="50" fontSize="18" fontWeight="700" fill={INK}>Welcome, kenil.</text>
+          <text x="16" y="68" fontSize="11" fill={MUTED}>Track inventory, manage carts.</text>
+          <rect x="16" y="78" width="148" height="20" rx="5" fill={ROW} stroke={LINE} />
+          <text x="26" y="92" fontSize="10" fontWeight="600" fill={MUTED}>CART ITEMS · 5</text>
+          <rect x="172" y="78" width="140" height="20" rx="5" fill={BLUE_BG} />
+          <text x="242" y="92" textAnchor="middle" fontSize="10" fontWeight="700" fill={BLUE}>₹ 4205.32</text>
+        </g>
+        {[["Essence Mascara", "₹ 9.99", "★ 2.56", 16], ["Eyeshadow Palette", "₹ 19.99", "★ 2.86", 186]].map(([n, p, r, x]) => (
+          <g key={n as string} transform={`translate(${x} 188)`}>
+            <rect width="158" height="162" rx="10" fill={PAPER} stroke={LINE} />
+            <rect x="12" y="12" width="134" height="58" rx="6" fill={ROW} stroke={LINE} />
+            <text x="12" y="86" fontSize="9" fontWeight="600" fill={FAINT}>BEAUTY</text>
+            <text x="12" y="102" fontSize="11.5" fontWeight="600" fill={INK}>{(n as string).split(" ").slice(0, 2).join(" ")}</text>
+            <text x="12" y="118" fontSize="13" fontWeight="700" fill={INK}>{p}</text>
+            <text x="12" y="132" fontSize="10" fill={MUTED}>{r}</text>
+            <rect x="12" y="138" width="64" height="16" rx="4" fill={PAPER} stroke={LINE} />
+            <text x="44" y="150" textAnchor="middle" fontSize="9" fontWeight="600" fill={MUTED}>DETAILS</text>
+            <rect x="82" y="138" width="64" height="16" rx="4" fill={INK} />
+            <text x="114" y="150" textAnchor="middle" fontSize="9" fontWeight="700" fill="#fff">ADD</text>
+          </g>
+        ))}
+        <g transform="translate(16 362)">
+          <rect width="328" height="142" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="16" y="26" fontSize="10" fontWeight="700" fill={BLUE}>QUICK ACTIONS</text>
+          {["Browse products", "Review cart", "Edit profile"].map((a, i) => (
+            <g key={a} transform={`translate(16 ${38 + i * 36})`}>
+              <rect width="296" height="28" rx="6" fill={ROW} stroke={LINE} />
+              <text x="12" y="18" fontSize="12" fontWeight="600" fill={INK}>{a}</text>
             </g>
           ))}
-          <line x1="14" y1="124" x2="314" y2="124" stroke={LINE} />
-          <text x="14" y="144" fontSize="12" fontWeight="600" fill={INK}>Total</text>
-          <text x="314" y="144" textAnchor="end" fontSize="15" fontWeight="700" fill={INK}>₹ 4,494</text>
-          <rect x="14" y="154" width="300" height="28" rx="6" fill={ORANGE} />
-          <text x="164" y="172" textAnchor="middle" fontSize="11" fontWeight="700" fill="#fff">Checkout</text>
         </g>
-        <text x="16" y="484" fontSize="11" fill={MUTED}>Catalogue, cart and totals stay in sync.</text>
       </svg>
     </Frame>
   );
 }
 
+/* Collectedge / UK Website — pill nav, DPD headline, health ring + collection chart. */
 export function PresenceArt() {
+  const bars = [52, 34, 78, 56, 38, 46, 36];
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   return (
     <Frame url="sample-studio.co.uk/">
-      <svg viewBox="0 0 560 340" className="hidden h-auto w-full sm:block" role="img" aria-label="Website homepage interface">
-        <rect width="560" height="340" fill={CANVAS} />
-        <rect x="20" y="14" width="520" height="250" rx="8" fill={PAPER} stroke={LINE} />
-        {/* nav */}
-        <text x="40" y="44" fontSize="11" fontWeight="700" fill={INK}>Meridian</text>
-        <text x="380" y="44" fontSize="9" fill={MUTED}>Work</text>
-        <text x="414" y="44" fontSize="9" fill={MUTED}>About</text>
-        <text x="452" y="44" fontSize="9" fill={MUTED}>Contact</text>
-        <rect x="492" y="34" width="28" height="14" rx="4" fill={INK} />
-        <line x1="40" y1="58" x2="520" y2="58" stroke={LINE} />
-        {/* hero */}
-        <text x="40" y="100" fontSize="24" fontWeight="700" fill={INK}>A presence with a purpose.</text>
-        <text x="40" y="120" fontSize="11" fill={MUTED}>Considered type, clear hierarchy, nothing to decode.</text>
-        <rect x="40" y="134" width="86" height="24" rx="6" fill={INK} />
-        <text x="83" y="149" textAnchor="middle" fontSize="10" fontWeight="600" fill="#fff">Get started</text>
-        <rect x="134" y="134" width="86" height="24" rx="6" fill={PAPER} stroke={LINE} />
-        <text x="177" y="149" textAnchor="middle" fontSize="10" fontWeight="600" fill={MUTED}>See work</text>
-        {/* columns */}
-        {[0, 1, 2].map((i) => (
-          <g key={i} transform={`translate(${40 + i * 160} 176)`}>
-            <rect width="146" height="68" rx="6" fill={ROW} stroke={LINE} />
-            <rect x="12" y="12" width="60" height="8" rx="4" fill={INK} opacity="0.75" />
-            <rect x="12" y="26" width="122" height="6" rx="3" fill={MUTED} opacity="0.4" />
-            <rect x="12" y="36" width="100" height="6" rx="3" fill={MUTED} opacity="0.3" />
-            <text x="12" y="58" fontSize="9" fontWeight="600" fill={MUTED}>Learn more →</text>
-          </g>
-        ))}
-        <text x="20" y="300" fontSize="10" fill={MUTED}>Content-first pages with a structure readers can follow.</text>
+      <svg viewBox="0 0 560 340" className="hidden h-auto w-full sm:block" role="img" aria-label="Collectedge landing with health score and collection chart">
+        <rect width="560" height="340" fill="#eef2ff" />
+        <rect x="60" y="12" width="440" height="44" rx="22" fill={PAPER} stroke={LINE} />
+        <rect x="76" y="24" width="18" height="18" rx="5" fill={BLUE} />
+        <text x="100" y="38" fontSize="12" fontWeight="700" fill={INK}>Collectedge</text>
+        <text x="220" y="38" fontSize="9" fontWeight="700" fill={INK}>Home</text>
+        <text x="260" y="38" fontSize="9" fill={MUTED}>For Lenders</text>
+        <text x="326" y="38" fontSize="9" fill={MUTED}>For Agencies</text>
+        <rect x="418" y="20" width="66" height="26" rx="13" fill={BLUE} />
+        <text x="451" y="37" textAnchor="middle" fontSize="9" fontWeight="700" fill="#fff">Get in touch</text>
+        <text x="280" y="102" textAnchor="middle" fontSize="22" fontWeight="700" fill={INK}>Unified Platform for</text>
+        <text x="280" y="128" textAnchor="middle" fontSize="22" fontWeight="700" fill={BLUE}>Late-Stage DPD Resolution.</text>
+        <text x="280" y="148" textAnchor="middle" fontSize="9" fill={MUTED}>Built with agencies &amp; collection managers in mind.</text>
+        <rect x="248" y="160" width="64" height="24" rx="12" fill={BLUE} />
+        <text x="280" y="175" textAnchor="middle" fontSize="9" fontWeight="700" fill="#fff">Free Trial</text>
+        {/* health ring */}
+        <g transform="translate(20 168)">
+          <rect width="150" height="156" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="14" y="24" fontSize="10" fontWeight="700" fill={INK}>Operational Health</text>
+          <text x="14" y="36" fontSize="9" fill={MUTED}>April 2025</text>
+          <circle cx="75" cy="88" r="34" fill="none" stroke={BLUE} strokeOpacity="0.15" strokeWidth="12" />
+          <circle cx="75" cy="88" r="34" fill="none" stroke={BLUE} strokeWidth="12" strokeLinecap="round" strokeDasharray="170 214" transform="rotate(-90 75 88)" />
+          <text x="75" y="92" textAnchor="middle" fontSize="13" fontWeight="700" fill={INK}>80%</text>
+          <text x="75" y="140" textAnchor="middle" fontSize="8" fill={MUTED}>Actionable cases first</text>
+        </g>
+        {/* bar chart */}
+        <g transform="translate(180 168)">
+          <rect width="200" height="156" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="14" y="24" fontSize="10" fontWeight="700" fill={INK}>Interactions &amp; amount</text>
+          <text x="14" y="36" fontSize="8" fill={MUTED}>Totals · 31 Feb · Wed 34% peak</text>
+          {bars.map((h, i) => (
+            <rect key={i} x={16 + i * 26} y={124 - h} width="16" height={h} rx="4" fill={i === 2 ? BLUE : BLUE} opacity={i === 2 ? 1 : 0.28} />
+          ))}
+          {days.map((d, i) => (
+            <text key={d} x={24 + i * 26} y="138" textAnchor="middle" fontSize="7" fill={MUTED}>{d}</text>
+          ))}
+        </g>
+        {/* agency card */}
+        <g transform="translate(390 168)">
+          <rect width="150" height="156" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="14" y="24" fontSize="10" fontWeight="700" fill={INK}>AFL Services</text>
+          <text x="14" y="36" fontSize="8" fill={MUTED}>Bangalore · Chennai</text>
+          {[["100+ Calling", 52], ["150+ Field", 78], ["4.1/5 Rating", 104]].map(([t, y]) => (
+            <g key={t as string} transform={`translate(14 ${y})`}>
+              <rect width="122" height="22" rx="5" fill={ROW} stroke={LINE} />
+              <text x="8" y="15" fontSize="8" fontWeight="600" fill={INK}>{t}</text>
+            </g>
+          ))}
+        </g>
       </svg>
-      <svg viewBox="0 0 360 500" className="block h-auto w-full sm:hidden" role="img" aria-label="Website homepage interface">
-        <rect width="360" height="500" fill={CANVAS} />
-        <rect x="16" y="12" width="328" height="220" rx="8" fill={PAPER} stroke={LINE} />
-        <text x="34" y="42" fontSize="13" fontWeight="700" fill={INK}>Meridian</text>
-        <text x="296" y="42" fontSize="10" fill={MUTED}>Menu</text>
-        <line x1="34" y1="56" x2="326" y2="56" stroke={LINE} />
-        <text x="34" y="100" fontSize="25" fontWeight="700" fill={INK}>A presence</text>
-        <text x="34" y="128" fontSize="25" fontWeight="700" fill={INK}>with a purpose.</text>
-        <text x="34" y="150" fontSize="12" fill={MUTED}>Clear hierarchy, nothing to decode.</text>
-        <rect x="34" y="162" width="292" height="28" rx="6" fill={INK} />
-        <text x="180" y="180" textAnchor="middle" fontSize="11" fontWeight="600" fill="#fff">Get started</text>
-        <rect x="34" y="196" width="292" height="28" rx="6" fill={PAPER} stroke={LINE} />
-        <text x="180" y="214" textAnchor="middle" fontSize="11" fontWeight="600" fill={MUTED}>See work</text>
-        {[["About the practice", 244], ["How we can help", 348]].map(([t, y]) => (
-          <g key={t as string} transform={`translate(16 ${y})`}>
-            <rect width="328" height="96" rx="8" fill={PAPER} stroke={LINE} />
-            <rect x="16" y="16" width="72" height="10" rx="5" fill={INK} opacity="0.75" />
-            <rect x="16" y="34" width="296" height="8" rx="4" fill={MUTED} opacity="0.4" />
-            <rect x="16" y="48" width="240" height="8" rx="4" fill={MUTED} opacity="0.3" />
-            <text x="16" y="78" fontSize="11" fontWeight="600" fill={MUTED}>Learn more →</text>
-          </g>
-        ))}
-        <text x="16" y="484" fontSize="11" fill={MUTED}>Content-first pages readers can follow.</text>
+      <svg viewBox="0 0 360 500" className="block h-auto w-full sm:hidden" role="img" aria-label="Collectedge landing mobile">
+        <rect width="360" height="500" fill="#eef2ff" />
+        <rect x="16" y="12" width="328" height="48" rx="24" fill={PAPER} stroke={LINE} />
+        <rect x="32" y="24" width="20" height="20" rx="5" fill={BLUE} />
+        <text x="58" y="39" fontSize="13" fontWeight="700" fill={INK}>Collectedge</text>
+        <rect x="248" y="22" width="80" height="28" rx="14" fill={BLUE} />
+        <text x="288" y="40" textAnchor="middle" fontSize="10" fontWeight="700" fill="#fff">Get in touch</text>
+        <text x="180" y="110" textAnchor="middle" fontSize="24" fontWeight="700" fill={INK}>Unified Platform</text>
+        <text x="180" y="138" textAnchor="middle" fontSize="24" fontWeight="700" fill={BLUE}>for DPD.</text>
+        <rect x="34" y="156" width="292" height="32" rx="16" fill={BLUE} />
+        <text x="180" y="177" textAnchor="middle" fontSize="12" fontWeight="700" fill="#fff">Get free Trial</text>
+        <g transform="translate(16 200)">
+          <rect width="158" height="150" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="14" y="24" fontSize="11" fontWeight="700" fill={INK}>Health 80%</text>
+          <circle cx="79" cy="88" r="30" fill="none" stroke={BLUE} strokeOpacity="0.15" strokeWidth="11" />
+          <circle cx="79" cy="88" r="30" fill="none" stroke={BLUE} strokeWidth="11" strokeLinecap="round" strokeDasharray="150 189" transform="rotate(-90 79 88)" />
+          <text x="79" y="92" textAnchor="middle" fontSize="12" fontWeight="700" fill={INK}>80%</text>
+        </g>
+        <g transform="translate(186 200)">
+          <rect width="158" height="150" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="14" y="24" fontSize="11" fontWeight="700" fill={INK}>Collected</text>
+          {[44, 28, 62, 44, 32].map((h, i) => (
+            <rect key={i} x={16 + i * 26} y={120 - h} width="16" height={h} rx="4" fill={BLUE} opacity={i === 2 ? 1 : 0.3} />
+          ))}
+        </g>
+        <g transform="translate(16 362)">
+          <rect width="328" height="122" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="16" y="28" fontSize="12" fontWeight="700" fill={INK}>AFL Services · 100+ calling · 150+ field</text>
+          <text x="16" y="46" fontSize="11" fill={MUTED}>Bangalore, Chennai · Since 2016</text>
+          <rect x="16" y="58" width="296" height="46" rx="6" fill={ROW} stroke={LINE} />
+          <text x="28" y="77" fontSize="11" fontWeight="600" fill={INK}>Cheyenne G.</text>
+          <text x="28" y="92" fontSize="10" fill={MUTED}>+91 98XXXXXXXX</text>
+        </g>
       </svg>
     </Frame>
   );
 }
 
+/* Trippy — as shipped: New Trip form + revenue dashboard. */
 export function TrippyArt() {
   return (
     <Frame url="trippy.orangedev.in/dispatch">
-      <svg viewBox="0 0 560 340" className="hidden h-auto w-full sm:block" role="img" aria-label="Transport dispatch board interface">
+      <svg viewBox="0 0 560 340" className="hidden h-auto w-full sm:block" role="img" aria-label="Trippy new trip form and revenue dashboard">
         <rect width="560" height="340" fill={CANVAS} />
-        {/* map */}
         <g transform="translate(20 14)">
-          <rect width="300" height="230" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="14" y="26" fontSize="11" fontWeight="700" fill={INK}>Today · Route 04</text>
-          <rect x="228" y="14" width="58" height="16" rx="8" fill={INK} />
-          <text x="257" y="25" textAnchor="middle" fontSize="8" fontWeight="700" fill="#fff">● LIVE</text>
-          {[40, 80, 120, 160, 200].map((y) => (
-            <line key={y} x1="14" y1={y} x2="286" y2={y} stroke={LINE} strokeDasharray="2 4" />
-          ))}
-          <path d="M30 190 C 90 190, 90 80, 150 80 S 210 140, 270 70" fill="none" stroke={INK} strokeOpacity="0.35" strokeWidth="2" />
-          {[["A", 30, 190], ["B", 150, 80], ["C", 270, 70]].map(([label, x, y]) => (
-            <g key={label as string} transform={`translate(${x} ${y})`}>
-              <circle r="10" fill={label === "B" ? ORANGE : PAPER} stroke={label === "B" ? ORANGE : MUTED} strokeWidth="1.5" />
-              <text y="3.5" textAnchor="middle" fontSize="9" fontWeight="700" fill={label === "B" ? "#fff" : INK}>{label}</text>
+          <rect width="250" height="260" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="16" y="24" fontSize="8" fontWeight="700" fill={BLUE}>TRIPPY · NEW TRIP</text>
+          <text x="16" y="40" fontSize="9" fill={MUTED}>STARTING POINT</text>
+          <rect x="16" y="46" width="218" height="30" rx="6" fill={ROW} stroke={LINE} />
+          <text x="28" y="65" fontSize="10" fontWeight="700" fill={INK}>Green Tech</text>
+          <text x="16" y="94" fontSize="9" fill={MUTED}>DESTINATION</text>
+          <rect x="16" y="100" width="218" height="30" rx="6" fill={ROW} stroke={LINE} />
+          <text x="28" y="119" fontSize="10" fontWeight="700" fill={INK}>Welspun Corp</text>
+          <text x="16" y="148" fontSize="9" fill={MUTED}>FARE · ₹ 1400</text>
+          <rect x="16" y="154" width="218" height="26" rx="6" fill={ROW} stroke={LINE} />
+          <text x="28" y="171" fontSize="10" fontWeight="700" fill={INK}>₹ 1400</text>
+          <rect x="16" y="188" width="106" height="26" rx="6" fill={ROW} stroke={LINE} />
+          <text x="26" y="205" fontSize="9" fontWeight="600" fill={INK}>11 Oct 26</text>
+          <rect x="128" y="188" width="106" height="26" rx="6" fill={ROW} stroke={LINE} />
+          <text x="138" y="205" fontSize="9" fontWeight="600" fill={INK}>Veh. 9999</text>
+          <rect x="16" y="222" width="218" height="28" rx="6" fill={BLUE} />
+          <text x="125" y="240" textAnchor="middle" fontSize="10" fontWeight="700" fill="#fff">ADD TRIP</text>
+        </g>
+        <g transform="translate(280 14)">
+          {[["THIS MONTH ₹1,10,000", "TOTAL TRIPS 5"], ["AVG FARE ₹22,000", "THIS WEEK ₹1,10,000"]].map((row, r) => (
+            <g key={r} transform={`translate(0 ${r * 56})`}>
+              {row.map((t, c) => (
+                <g key={t} transform={`translate(${c * 132} 0)`}>
+                  <rect width="124" height="48" rx="8" fill={PAPER} stroke={LINE} />
+                  <text x="10" y="18" fontSize="7" fill={MUTED}>{t.split(" ").slice(0, 2).join(" ")}</text>
+                  <text x="10" y="36" fontSize="12" fontWeight="700" fill={INK}>{t.split(" ").slice(2).join(" ")}</text>
+                </g>
+              ))}
             </g>
           ))}
-          <text x="14" y="222" fontSize="9" fill={MUTED}>14 stops · 3 vehicles · updated 2 min ago</text>
-        </g>
-        {/* fleet list */}
-        <g transform="translate(330 14)">
-          {[["Truck 04 · On route", "Route A → C · 42 min left", "green", 72], ["Truck 11 · Loading", "Depot 2 · 10 min", "amber", 38], ["Truck 07 · Scheduled", "Depot 1 · 08:30", "gray", 12]].map(([t, s, tone, w], i) => (
-            <g key={t as string} transform={`translate(0 ${i * 80})`}>
-              <rect width="210" height="70" rx="8" fill={PAPER} stroke={LINE} />
-              <text x="12" y="24" fontSize="10" fontWeight="700" fill={INK}>{t}</text>
-              <text x="12" y="38" fontSize="9" fill={MUTED}>{s}</text>
-              <rect x="12" y="46" width="120" height="5" rx="2.5" fill={CANVAS} />
-              <rect x="12" y="46" width={(120 * (w as number)) / 100} height="5" rx="2.5" fill={tone === "green" ? "#16a34a" : tone === "amber" ? ORANGE : FAINT} />
-              <text x="198" y="50" textAnchor="end" fontSize="9" fontWeight="600" fill={MUTED}>{w}%</text>
-            </g>
-          ))}
-        </g>
-        <text x="20" y="300" fontSize="10" fill={MUTED}>Live dispatch with honest status and no phone chaos.</text>
-      </svg>
-      <svg viewBox="0 0 360 560" className="block h-auto w-full sm:hidden" role="img" aria-label="Transport dispatch board interface">
-        <rect width="360" height="560" fill={CANVAS} />
-        <g transform="translate(16 12)">
-          <rect width="328" height="196" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="16" y="30" fontSize="13" fontWeight="700" fill={INK}>Today · Route 04</text>
-          <rect x="252" y="16" width="60" height="18" rx="9" fill={INK} />
-          <text x="282" y="29" textAnchor="middle" fontSize="9" fontWeight="700" fill="#fff">● LIVE</text>
-          {[56, 88, 120, 152].map((y) => (
-            <line key={y} x1="16" y1={y} x2="312" y2={y} stroke={LINE} strokeDasharray="2 4" />
-          ))}
-          <path d="M36 168 C 100 168, 100 60, 164 60 S 230 120, 292 56" fill="none" stroke={INK} strokeOpacity="0.35" strokeWidth="2" />
-          {[["A", 36, 168], ["B", 164, 60], ["C", 292, 56]].map(([label, x, y]) => (
-            <g key={label as string} transform={`translate(${x} ${y})`}>
-              <circle r="11" fill={label === "B" ? ORANGE : PAPER} stroke={label === "B" ? ORANGE : MUTED} strokeWidth="1.5" />
-              <text y="4" textAnchor="middle" fontSize="10" fontWeight="700" fill={label === "B" ? "#fff" : INK}>{label}</text>
-            </g>
-          ))}
-        </g>
-        {[["Truck 04 · On route", "Route A → C · 42 min left", 72, "#16a34a"], ["Truck 11 · Loading", "Depot 2 · 10 min", 38, ORANGE], ["Truck 07 · Scheduled", "Depot 1 · 08:30", 12, FAINT]].map(([t, s, w, c], i) => (
-          <g key={t as string} transform={`translate(16 ${220 + i * 100})`}>
-            <rect width="328" height="90" rx="8" fill={PAPER} stroke={LINE} />
-            <text x="16" y="30" fontSize="13" fontWeight="700" fill={INK}>{t}</text>
-            <text x="16" y="48" fontSize="11" fill={MUTED}>{s}</text>
-            <rect x="16" y="58" width="220" height="6" rx="3" fill={CANVAS} />
-            <rect x="16" y="58" width={(220 * (w as number)) / 100} height="6" rx="3" fill={c as string} />
-            <text x="312" y="64" textAnchor="end" fontSize="11" fontWeight="600" fill={MUTED}>{w}%</text>
+          <g transform="translate(0 120)">
+            <rect width="260" height="154" rx="10" fill={PAPER} stroke={LINE} />
+            <text x="14" y="22" fontSize="10" fontWeight="700" fill={INK}>Weekly Revenue</text>
+            {[34, 14, 16, 26, 58, 44, 84].map((h, i) => (
+              <rect key={i} x={16 + i * 34} y={130 - h} width="20" height={h} rx="4" fill={BLUE} opacity={i === 6 ? 1 : 0.25 + h / 300} />
+            ))}
+            <text x="14" y="146" fontSize="8" fill={MUTED}>06 MAY → 11 OCT · peak ₹84,200</text>
           </g>
-        ))}
-        <text x="16" y="540" fontSize="11" fill={MUTED}>Live dispatch with honest status.</text>
+        </g>
+        <text x="20" y="312" fontSize="10" fill={MUTED}>Trip creation up front, revenue truth on the dashboard.</text>
+      </svg>
+      <svg viewBox="0 0 360 620" className="block h-auto w-full sm:hidden" role="img" aria-label="Trippy mobile form and dashboard">
+        <rect width="360" height="620" fill={CANVAS} />
+        <rect x="0" y="0" width="360" height="52" fill={PAPER} stroke={LINE} />
+        <text x="18" y="32" fontSize="14" fontWeight="800" fill={BLUE}>TRIPPY</text>
+        <text x="342" y="32" textAnchor="end" fontSize="10" fill={MUTED}>Hi, Honey!</text>
+        <g transform="translate(16 64)">
+          <rect width="328" height="252" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="16" y="26" fontSize="11" fontWeight="700" fill={INK}>NEW TRIP</text>
+          <text x="16" y="48" fontSize="9" fill={MUTED}>STARTING POINT</text>
+          <rect x="16" y="54" width="296" height="32" rx="6" fill={ROW} stroke={LINE} />
+          <text x="28" y="75" fontSize="12" fontWeight="700" fill={INK}>Green Tech</text>
+          <text x="16" y="104" fontSize="9" fill={MUTED}>DESTINATION</text>
+          <rect x="16" y="110" width="296" height="32" rx="6" fill={ROW} stroke={LINE} />
+          <text x="28" y="131" fontSize="12" fontWeight="700" fill={INK}>Welspun Corp</text>
+          <rect x="16" y="150" width="296" height="30" rx="6" fill={ROW} stroke={LINE} />
+          <text x="28" y="170" fontSize="12" fontWeight="700" fill={INK}>₹ 1400 · 11 Oct 26 · 9999</text>
+          <rect x="16" y="192" width="296" height="40" rx="7" fill={BLUE} />
+          <text x="164" y="217" textAnchor="middle" fontSize="12" fontWeight="700" fill="#fff">ADD TRIP</text>
+        </g>
+        <g transform="translate(16 328)">
+          {[["THIS MONTH", "₹1,10,000", 0], ["TOTAL TRIPS", "5", 1], ["AVG FARE", "₹22,000", 2], ["THIS WEEK", "₹1,10,000", 3]].map(([k, v, i]) => (
+            <g key={k as string} transform={`translate(${(Number(i) % 2) * 168} ${Math.floor(Number(i) / 2) * 64})`}>
+              <rect width="160" height="56" rx="8" fill={PAPER} stroke={LINE} />
+              <text x="12" y="22" fontSize="9" fill={MUTED}>{k}</text>
+              <text x="12" y="42" fontSize="14" fontWeight="700" fill={INK}>{v}</text>
+            </g>
+          ))}
+        </g>
+        <g transform="translate(16 464)">
+          <rect width="328" height="140" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="16" y="26" fontSize="12" fontWeight="700" fill={INK}>Weekly Revenue</text>
+          {[30, 12, 14, 24, 52, 38, 74].map((h, i) => (
+            <rect key={i} x={16 + i * 44} y={118 - h} width="26" height={h} rx="4" fill={BLUE} opacity={i === 6 ? 1 : 0.3} />
+          ))}
+        </g>
       </svg>
     </Frame>
   );
@@ -369,77 +438,96 @@ export function PayrollArt() {
   );
 }
 
+/* OrangeERP — as shipped: today's ops KPIs, site progress, muster, low stock. */
 export function ErpArt() {
   return (
     <Frame url="erp.orangedev.in/overview">
-      <svg viewBox="0 0 560 360" className="hidden h-auto w-full sm:block" role="img" aria-label="Contractor ERP overview interface">
+      <svg viewBox="0 0 560 360" className="hidden h-auto w-full sm:block" role="img" aria-label="Contractor ERP with projects, muster and stock">
         <rect width="560" height="360" fill={CANVAS} />
-        {/* KPI row */}
-        {[["Active projects", "18", "+2"], ["Open sites", "7", "±0"], ["Workers today", "412", "+18"], ["Stock alerts", "3", "-1"]].map(([k, v, d], i) => (
-          <g key={k} transform={`translate(${20 + i * 130} 14)`}>
-            <rect width="122" height="64" rx="8" fill={PAPER} stroke={LINE} />
-            <text x="12" y="22" fontSize="8" fontWeight="600" fill={MUTED}>{k.toUpperCase()}</text>
-            <text x="12" y="44" fontSize="17" fontWeight="700" fill={INK}>{v}</text>
-            <text x="96" y="44" textAnchor="end" fontSize="9" fontWeight="600" fill={d.startsWith("+") ? GREEN_TX : MUTED}>{d}</text>
+        {[["Active Projects", "4", 20], ["Today's Labour", "42 / 51", 150], ["Client Payments", "₹2.10L", 280], ["Est. Margin", "₹3.45L", 410]].map(([k, v, x]) => (
+          <g key={k as string} transform={`translate(${x} 14)`}>
+            <rect width="122" height="60" rx="8" fill={PAPER} stroke={LINE} />
+            <text x="12" y="22" fontSize="8" fontWeight="600" fill={MUTED}>{(k as string).toUpperCase()}</text>
+            <text x="12" y="46" fontSize="16" fontWeight="700" fill={INK}>{v}</text>
           </g>
         ))}
-        {/* chart */}
-        <g transform="translate(20 88)">
-          <rect width="330" height="180" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="14" y="26" fontSize="11" fontWeight="700" fill={INK}>Site progress</text>
-          <text x="316" y="26" textAnchor="end" fontSize="9" fill={MUTED}>Last 7 days</text>
-          {[42, 68, 52, 88, 64, 96, 74].map((h, i) => (
-            <rect key={i} x={20 + i * 42} y={150 - h} width="26" height={h} rx="4" fill={i === 3 ? ORANGE : "#1f1e1c"} opacity={i === 3 ? 1 : 0.12 + (h / 220)} />
-          ))}
-          <line x1="14" y1="150" x2="316" y2="150" stroke={LINE} />
-        </g>
-        {/* modules */}
-        <g transform="translate(360 88)">
-          <rect width="180" height="180" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="14" y="26" fontSize="11" fontWeight="700" fill={INK}>Modules</text>
-          {[["Labour · muster", 48], ["Materials · stock", 74], ["Expenses", 61], ["Client billing", 83]].map(([t, p], i) => (
-            <g key={t as string} transform={`translate(14 ${44 + i * 32})`}>
-              <text fontSize="9" fontWeight="600" fill={INK}>{t}</text>
-              <text x="152" textAnchor="end" fontSize="9" fill={MUTED}>{p}%</text>
-              <rect y="8" width="152" height="4" rx="2" fill={CANVAS} />
-              <rect y="8" width={(152 * (p as number)) / 100} height="4" rx="2" fill={INK} opacity="0.7" />
+        <g transform="translate(20 84)">
+          <rect width="310" height="240" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="14" y="26" fontSize="11" fontWeight="700" fill={INK}>Project Overview</text>
+          <text x="296" y="26" textAnchor="end" fontSize="8" fill={MUTED}>Budget vs actual</text>
+          {[["Patel Residence · Ahmedabad", "₹16.80L / ₹25L", 78, "Active"], ["Sharma Commercial · Gandhinagar", "₹9.20L / ₹32L", 52, "Active"], ["Boundary Wall — Plot 7 · Sanand", "₹4.10L / ₹6.5L", 63, "On Hold"]].map(([t, amt, p, s], i) => (
+            <g key={t as string} transform={`translate(14 ${48 + i * 62})`}>
+              <text fontSize="10" fontWeight="700" fill={INK}>{(t as string).split("·")[0].trim()}</text>
+              <rect x="196" y="-12" width="52" height="16" rx="8" fill={s === "Active" ? GREEN_BG : AMBER_BG} />
+              <text x="222" y="0" textAnchor="middle" fontSize="8" fontWeight="700" fill={s === "Active" ? GREEN_TX : AMBER_TX}>{s}</text>
+              <rect y="12" width="200" height="6" rx="3" fill={CANVAS} />
+              <rect y="12" width={(200 * (p as number)) / 100} height="6" rx="3" fill={ORANGE} />
+              <text x="0" y="28" fontSize="8" fill={MUTED}>{amt} · 86% received</text>
             </g>
           ))}
         </g>
-        <text x="20" y="316" fontSize="10" fill={MUTED}>Projects, labour, materials and money in one coherent system.</text>
+        <g transform="translate(340 84)">
+          <rect width="200" height="148" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="14" y="26" fontSize="10" fontWeight="700" fill={INK}>Main Building — Today</text>
+          <text x="14" y="40" fontSize="8" fill={MUTED}>Site-wise muster · 12 assigned</text>
+          {[["Ramesh · Mason", "Present", true], ["Suresh · Helper", "Present", true], ["Mahesh · Carpenter", "Half", false]].map(([n, s, on], i) => (
+            <g key={n as string} transform={`translate(14 ${54 + i * 30})`}>
+              <text fontSize="9" fontWeight="600" fill={INK}>{n}</text>
+              <rect x="118" y="-12" width="56" height="18" rx="9" fill={on ? ORANGE : AMBER_BG} />
+              <text x="146" y="0" textAnchor="middle" fontSize="8" fontWeight="700" fill={on ? "#fff" : AMBER_TX}>{s}</text>
+            </g>
+          ))}
+          <g transform="translate(14 158)">
+            <rect width="200" height="82" rx="10" fill={PAPER} stroke={LINE} />
+            <text x="14" y="24" fontSize="10" fontWeight="700" fill={INK}>Low Stock · 3 items</text>
+            {[["Cement", "18 / min 50"], ["Steel", "120 / min 500"], ["Paint", "12 / min 20"]].map(([m, q], i) => (
+              <g key={m as string} transform={`translate(14 ${36 + i * 14})`}>
+                <text fontSize="8" fontWeight="600" fill={INK}>{m}</text>
+                <text x="172" textAnchor="end" fontSize="8" fill={MUTED}>{q}</text>
+              </g>
+            ))}
+          </g>
+        </g>
+        <text x="20" y="344" fontSize="10" fill={MUTED}>Projects, muster, stock and money — one coherent site truth.</text>
       </svg>
-      <svg viewBox="0 0 360 620" className="block h-auto w-full sm:hidden" role="img" aria-label="Contractor ERP overview interface">
-        <rect width="360" height="620" fill={CANVAS} />
-        {[["Active projects", "18", "+2", 16, 12], ["Open sites", "7", "±0", 186, 12], ["Workers today", "412", "+18", 16, 88], ["Stock alerts", "3", "-1", 186, 88]].map(([k, v, d, x, y]) => (
+      <svg viewBox="0 0 360 640" className="block h-auto w-full sm:hidden" role="img" aria-label="Contractor ERP mobile overview">
+        <rect width="360" height="640" fill={CANVAS} />
+        {[["Active Projects", "4", 16, 12], ["Today's Labour", "42 / 51", 186, 12], ["Client Payments", "₹2.10L", 16, 84], ["Est. Margin", "₹3.45L", 186, 84]].map(([k, v, x, y]) => (
           <g key={k as string} transform={`translate(${x} ${y})`}>
-            <rect width="158" height="68" rx="8" fill={PAPER} stroke={LINE} />
+            <rect width="158" height="64" rx="8" fill={PAPER} stroke={LINE} />
             <text x="14" y="24" fontSize="9" fontWeight="600" fill={MUTED}>{(k as string).toUpperCase()}</text>
-            <text x="14" y="50" fontSize="20" fontWeight="700" fill={INK}>{v}</text>
-            <text x="144" y="50" textAnchor="end" fontSize="10" fontWeight="600" fill={(d as string).startsWith("+") ? GREEN_TX : MUTED}>{d}</text>
+            <text x="14" y="48" fontSize="17" fontWeight="700" fill={INK}>{v}</text>
           </g>
         ))}
-        <g transform="translate(16 168)">
-          <rect width="328" height="196" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="16" y="30" fontSize="13" fontWeight="700" fill={INK}>Site progress</text>
-          <text x="312" y="30" textAnchor="end" fontSize="10" fill={MUTED}>Last 7 days</text>
-          {[46, 72, 56, 92, 66, 100, 78].map((h, i) => (
-            <rect key={i} x={22 + i * 42} y={166 - h} width="28" height={h} rx="4" fill={i === 3 ? ORANGE : "#1f1e1c"} opacity={i === 3 ? 1 : 0.12 + (h / 220)} />
-          ))}
-          <line x1="16" y1="166" x2="312" y2="166" stroke={LINE} />
-        </g>
-        <g transform="translate(16 376)">
-          <rect width="328" height="196" rx="8" fill={PAPER} stroke={LINE} />
-          <text x="16" y="30" fontSize="13" fontWeight="700" fill={INK}>Modules</text>
-          {[["Labour · muster", 48], ["Materials · stock", 74], ["Expenses", 61], ["Client billing", 83]].map(([t, p], i) => (
-            <g key={t as string} transform={`translate(16 ${48 + i * 34})`}>
-              <text fontSize="11" fontWeight="600" fill={INK}>{t}</text>
-              <text x="280" textAnchor="end" fontSize="11" fill={MUTED}>{p}%</text>
-              <rect y="8" width="280" height="5" rx="2.5" fill={CANVAS} />
-              <rect y="8" width={(280 * (p as number)) / 100} height="5" rx="2.5" fill={INK} opacity="0.7" />
+        <g transform="translate(16 160)">
+          <rect width="328" height="210" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="16" y="28" fontSize="13" fontWeight="700" fill={INK}>Project Overview</text>
+          {[["Patel Residence", "₹16.80L / ₹25L", 78], ["Sharma Commercial", "₹9.20L / ₹32L", 52], ["Boundary Wall — Plot 7", "₹4.10L / ₹6.5L", 63]].map(([t, a, p], i) => (
+            <g key={t as string} transform={`translate(16 ${46 + i * 54})`}>
+              <text fontSize="12" fontWeight="700" fill={INK}>{t}</text>
+              <text x="296" textAnchor="end" fontSize="10" fill={MUTED}>{a}</text>
+              <rect y="10" width="296" height="6" rx="3" fill={CANVAS} />
+              <rect y="10" width={(296 * (p as number)) / 100} height="6" rx="3" fill={ORANGE} />
             </g>
           ))}
         </g>
-        <text x="16" y="600" fontSize="11" fill={MUTED}>Projects, labour, materials, money.</text>
+        <g transform="translate(16 382)">
+          <rect width="328" height="150" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="16" y="28" fontSize="13" fontWeight="700" fill={INK}>Main Building — Today · 12 assigned</text>
+          {[["Ramesh · Mason ₹900/d", "Present", true], ["Suresh · Helper ₹600/d", "Present", true], ["Raj · Helper ₹600/d", "Absent", false]].map(([n, s, on], i) => (
+            <g key={n as string} transform={`translate(16 ${44 + i * 34})`}>
+              <text fontSize="12" fontWeight="600" fill={INK}>{n}</text>
+              <rect x="226" y="-14" width="70" height="22" rx="11" fill={on ? ORANGE : "#f0ede6"} />
+              <text x="261" y="0" textAnchor="middle" fontSize="10" fontWeight="700" fill={on ? "#fff" : MUTED}>{s}</text>
+            </g>
+          ))}
+        </g>
+        <g transform="translate(16 544)">
+          <rect width="328" height="80" rx="10" fill={PAPER} stroke={LINE} />
+          <text x="16" y="28" fontSize="12" fontWeight="700" fill={INK}>Low Stock · 3 items</text>
+          <text x="16" y="48" fontSize="11" fill={MUTED}>Cement 18/50 · Steel 120/500 · Paint 12/20</text>
+          <text x="16" y="64" fontSize="10" fill={MUTED}>Guarded stock — never negative.</text>
+        </g>
       </svg>
     </Frame>
   );
