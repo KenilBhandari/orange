@@ -113,11 +113,11 @@ export function ContactForm() {
           <p className="mt-6 text-sm text-text-muted">
             Prefer email?{" "}
             <a
-              href="mailto:hello@orangedev.in"
+              href="mailto:kenilbhandari@zohomail.in"
               className="font-medium text-text underline decoration-border
                 underline-offset-4 transition-colors hover:text-primary"
             >
-              hello@orangedev.in
+              kenilbhandari@zohomail.in
             </a>
           </p>
         </Reveal>
@@ -269,10 +269,10 @@ export function Footer() {
         <div className="mt-8 flex flex-col gap-3 border-t border-border pt-5 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} OrangeDev. All rights reserved.</p>
           <a
-            href="mailto:hello@orangedev.in"
+            href="mailto:kenilbhandari@zohomail.in"
             className="font-medium text-text transition-colors hover:text-primary"
           >
-            hello@orangedev.in
+            kenilbhandari@zohomail.in
           </a>
         </div>
       </div>

@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 
   const resendKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
-  const from = process.env.CONTACT_FROM_EMAIL ?? "OrangeDev <hello@orangedev.in>";
+  const from = process.env.CONTACT_FROM_EMAIL ?? "OrangeDev <kenilbhandari@zohomail.in>";
 
   if (resendKey && to) {
     const res = await fetch("https://api.resend.com/emails", {
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
     if (!res.ok) {
       console.error("[contact] inbox forward failed", await res.text());
       return NextResponse.json(
-        { error: "We could not send that just now. Email hello@orangedev.in directly?" },
+        { error: "We could not send that just now. Email kenilbhandari@zohomail.in directly?" },
         { status: 502 }
       );
     }

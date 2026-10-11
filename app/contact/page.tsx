@@ -87,7 +87,7 @@ function ContactForm() {
         </span>
         <h2 className="mt-4 text-lg font-bold tracking-tight text-text">Message received.</h2>
         <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-text-muted">
-          Thanks for reaching out. We reply within one working day at <span className="font-semibold text-text">hello@orangedev.in</span>.
+          Thanks for reaching out. We reply within one working day at <span className="font-semibold text-text">kenilbhandari@zohomail.in</span>.
         </p>
         <button
           type="button"
@@ -139,7 +139,7 @@ function ContactForm() {
 }
 
 const SIDE_ROWS = [
-  { icon: Mail, t: "Email", v: "hello@orangedev.in", href: "mailto:hello@orangedev.in", mobile: true },
+  { icon: Mail, t: "Email", v: "kenilbhandari@zohomail.in", href: "mailto:kenilbhandari@zohomail.in", mobile: true },
   { icon: Clock, t: "Response time", v: "Within one working day", href: undefined, mobile: true },
   {
     icon: MessageSquareText,

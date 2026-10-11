@@ -69,37 +69,37 @@ export function Closing() {
 export function Footer() {
   return (
     <footer className="border-t hairline bg-surface">
-      <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+      <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-10">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
           <div className="max-w-sm">
-            <div className="max-w-sm text-[22px]" aria-label="OrangeDev">
+            <div className="max-w-sm text-[20px] sm:text-[22px]" aria-label="OrangeDev">
               <WordmarkLockup orangeFill="#EA580C" devFill="#1c1c1c" />
             </div>
-            <p className="mt-2 text-sm leading-6 text-text-muted">
+            <p className="mt-2 hidden text-sm leading-6 text-text-muted sm:block">
               Software that makes work simpler, from everyday tools to complete
               operational systems.
             </p>
-            <p className="mt-2 text-sm font-medium text-text-muted">
+            <p className="mt-1.5 text-[13px] font-medium text-text-muted sm:mt-2 sm:text-sm">
               One working day reply ·{" "}
               <Link href="/contact" className="font-semibold text-text transition-colors hover:text-primary">
-                hello@orangedev.in
+                kenilbhandari@zohomail.in
               </Link>
             </p>
           </div>
           <nav aria-label="Footer">
-            <ul className="flex flex-wrap gap-x-5 gap-y-1 text-[15px] font-medium text-text-muted sm:text-sm">
-              <li><Link href="/#work" className="inline-block py-1.5 transition-colors hover:text-text">Work</Link></li>
-              <li><Link href="/#solutions" className="inline-block py-1.5 transition-colors hover:text-text">Solutions</Link></li>
-              <li><Link href="/#story" className="inline-block py-1.5 transition-colors hover:text-text">Our story</Link></li>
-              <li><Link href="/contact" className="inline-block py-1.5 transition-colors hover:text-text">Contact</Link></li>
+            <ul className="flex flex-wrap gap-x-4 gap-y-0 text-[14px] font-medium text-text-muted sm:gap-x-5 sm:gap-y-1 sm:text-sm">
+              <li><Link href="/#work" className="inline-block py-1 transition-colors hover:text-text sm:py-1.5">Work</Link></li>
+              <li><Link href="/#solutions" className="inline-block py-1 transition-colors hover:text-text sm:py-1.5">Solutions</Link></li>
+              <li><Link href="/#story" className="inline-block py-1 transition-colors hover:text-text sm:py-1.5">Our story</Link></li>
+              <li><Link href="/contact" className="inline-block py-1 transition-colors hover:text-text sm:py-1.5">Contact</Link></li>
             </ul>
           </nav>
         </div>
-        <div className="mt-8 flex flex-col gap-1 border-t hairline pt-5 text-xs text-text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-5 flex flex-col gap-0.5 border-t hairline pt-4 text-xs text-text-muted sm:mt-8 sm:flex-row sm:items-center sm:justify-between sm:gap-1 sm:pt-5">
           <p>© {new Date().getFullYear()} OrangeDev. All rights reserved.</p>
-          <p>
+          <p className="hidden sm:block">
             <Link href="/contact" className="font-semibold text-text transition-colors hover:text-primary">
-              hello@orangedev.in
+              kenilbhandari@zohomail.in
             </Link>
           </p>
         </div>

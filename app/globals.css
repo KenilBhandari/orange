@@ -146,12 +146,19 @@ p {
   transform: none;
 }
 
-/* Phones stay calm and fast: short fade in place, no rise, no will-change. */
+/* Phones: subtle reveal on scroll too — half-open, not full rise. */
 @media (max-width: 639px) {
   .reveal {
-    transform: none;
+    opacity: 0.15;
+    transform: translateY(12px);
     will-change: auto;
-    transition-duration: 0.4s;
+    transition:
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -236,6 +243,120 @@ p {
 
 .glow-blob {
   background: none;
+}
+
+/* Hero calm-premium motion: CSS only, transform + opacity, no scroll listeners. */
+.hero-enter {
+  opacity: 0;
+  animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: opacity, transform;
+}
+.hero-word {
+  display: inline-block;
+  opacity: 0;
+  animation: hero-word 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: opacity, transform;
+}
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes hero-word {
+  from {
+    opacity: 0;
+    transform: translateY(0.4em);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Ambient aura behind the mark: slow breathe, one layer. */
+.hero-aura {
+  position: absolute;
+  left: 50%;
+  top: 4rem;
+  width: min(560px, 92vw);
+  height: 340px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 50% 55% at 50% 42%, rgba(234, 88, 12, 0.1), transparent 70%);
+  pointer-events: none;
+  animation: aura-breathe 7s ease-in-out infinite;
+}
+@keyframes aura-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.06);
+  }
+}
+
+/* Live brand dot: soft ping, no layout cost. */
+.brand-dot {
+  animation: dot-ping 2.6s ease-in-out infinite;
+}
+@keyframes dot-ping {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(234, 88, 12, 0);
+  }
+}
+
+/* Product card shine: slow sweep, paused most of the cycle so it feels calm. */
+.hero-visual {
+  position: relative;
+}
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.55) 50%, transparent 58%);
+  transform: translateX(-130%);
+  animation: hero-shine 8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes hero-shine {
+  0%,
+  62% {
+    transform: translateX(-130%);
+  }
+  88%,
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+/* Phones: shorter rise, no blur tricks, aura fainter to save paint. */
+@media (max-width: 639px) {
+  .hero-enter {
+    animation-duration: 0.5s;
+  }
+  .hero-word {
+    animation-duration: 0.5s;
+  }
+  .hero-aura {
+    top: 2.5rem;
+    height: 240px;
+    opacity: 0.7;
+    animation-duration: 8s;
+  }
+  .hero-visual::after {
+    animation-duration: 9s;
+  }
 }
 
 .btn-nudge svg {

@@ -13,12 +13,12 @@ export function NavLogo() {
       href="/"
       aria-label="OrangeDev home"
       title="OrangeDev"
-      className="group flex h-10 shrink-0 select-none items-center gap-2 rounded-full pr-2 transition-opacity duration-150 hover:opacity-75 active:opacity-60"
+      className="group flex h-10 shrink-0 select-none items-center gap-2.5 rounded-full pr-2 transition-opacity duration-150 hover:opacity-75 active:opacity-60"
     >
-      <span aria-hidden="true" className="flex h-7 w-7 items-center justify-center sm:h-[30px] sm:w-[30px]">
-        <OrangeMark progress={1} size={30} label="" />
+      <span aria-hidden="true" className="flex h-7 w-7 shrink-0 items-center justify-center sm:h-[30px] sm:w-[30px]">
+        <OrangeMark progress={1} fluid label="" />
       </span>
-      <span aria-hidden="true" className="flex items-center text-[18px] leading-none sm:text-[19px]">
+      <span aria-hidden="true" className="flex translate-y-[2px] items-center text-[18px] leading-none sm:translate-y-[2.5px] sm:text-[19px]">
         <WordmarkLockup orangeFill="#EA580C" devFill="#1c1c1c" />
       </span>
     </Link>

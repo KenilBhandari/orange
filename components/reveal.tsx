@@ -17,14 +17,12 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    // Phones and reduced motion: show immediately, no observer cost.
-    if (
-      window.matchMedia("(max-width: 639px)").matches ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    // Reduced motion only: show immediately. Phones now keep a subtle reveal.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       el.classList.add("is-visible");
       return;
     }
+    const isPhone = window.matchMedia("(max-width: 639px)").matches;
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
@@ -34,7 +32,9 @@ export function Reveal({
           }
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      isPhone
+        ? { threshold: 0.08, rootMargin: "0px 0px -4% 0px" }
+        : { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
