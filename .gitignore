@@ -10,8 +10,9 @@ build/
 coverage/
 
 # Reference material
-/references/
- /illustrations/
+/Reference/
+/References/
+/Illustrations/
 
 # Root-level SVG files only
 /*.svg
