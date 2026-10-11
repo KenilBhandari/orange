@@ -37,7 +37,7 @@ export function Journey() {
         </Reveal>
         <ol className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-lg sm:border sm:bg-[var(--border)] md:grid-cols-3 lg:grid-cols-5 hairline">
           {TIMELINE.map((m) => (
-            <Reveal key={m.year} delay={0}>
+            <Reveal key={m.year}>
               <li className="h-full rounded-lg border bg-surface p-5 hairline sm:rounded-none sm:border-0">
                 <p className="tnum text-[13px] font-semibold text-text-muted">{m.year}</p>
                 <h3 className="mt-2 text-[15px] font-semibold text-text">{m.title}</h3>
@@ -71,7 +71,7 @@ export function Why() {
       </Reveal>
       <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-lg sm:border sm:bg-[var(--border)] md:grid-cols-2 lg:grid-cols-3 hairline">
         {POINTS.map((p, i) => (
-          <Reveal key={p.t} delay={0}>
+          <Reveal key={p.t}>
             <div className="h-full rounded-lg border bg-surface p-5 hairline sm:rounded-none sm:border-0 sm:p-6">
               <p className="tnum text-[13px] font-semibold text-text-muted">{String(i + 1).padStart(2, "0")}</p>
               <p className="mt-3 text-[15px] font-semibold text-text">{p.t}</p>

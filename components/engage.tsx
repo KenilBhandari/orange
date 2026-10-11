@@ -2,11 +2,6 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 
-/**
- * Two honest ways to start: a focused first build (Zero to One),
- * or a phased operational system (One to Scale).
- * Light Kraftbase split, no full black blocks.
- */
 const PLANS = [
   {
     tag: "Zero to One",
@@ -79,7 +74,6 @@ export function Engage() {
                   >
                     {plan.tag}
                   </p>
-                 
                 </div>
                 <div className="px-5 py-5 sm:px-6 sm:py-6">
                   <h3

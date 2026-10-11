@@ -35,7 +35,6 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
   const enabled = useDesktopSmooth();
   const pathname = usePathname();
 
-  // Phones and tablets use native scroll. Instant, no fight with momentum.
   useEffect(() => {
     if (!enabled) window.scrollTo(0, 0);
   }, [pathname, enabled]);

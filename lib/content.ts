@@ -104,7 +104,6 @@ export const PROJECTS: Project[] = [
     ],
     points: ["Clean product catalogue", "Simple cart and checkout summary", "Fast on phones and low bandwidth"],
   },
-
 ];
 
 export function getProject(slug: string) {

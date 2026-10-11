@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Geist + Geist Mono: self-hosted variable fonts (100 to 900). */
 @font-face {
   font-family: "Geist Mono";
   font-style: normal;
@@ -27,38 +26,18 @@
   src: url("/fonts/geist-mono-latin-ext.woff2") format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-@font-face {
-  font-family: "Geist";
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/geist-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 
 :root {
   --background: #faf9f7;
   --surface: #ffffff;
-  --surface-warm: #f4f1ea;
   --text: #1c1b1a;
   --text-muted: #6e6a61;
   --border: #e7e2d9;
   --primary: #ea580c;
   --primary-hover: #c2410c;
   --primary-soft: #fdf0e4;
-  --primary-ring: rgba(234, 88, 12, 0.22);
   --brand-green: #00be63;
   --brand-green-deep: #15803d;
-  --ink: #161311;
-  --brand-on: 0;
-  --shadow-soft: 0 1px 2px rgba(22, 19, 17, 0.05);
-  --shadow-glow: 0 8px 24px -12px rgba(22, 19, 17, 0.14);
-  --radius-card: 14px;
-  --radius-hero: 18px;
-}
-
-[data-brand="on"] {
-  --brand-on: 1;
 }
 
 * {
@@ -83,7 +62,6 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Anchor jumps clear the sticky navbar on all viewports. */
 section[id] {
   scroll-margin-top: 5rem;
 }
@@ -93,7 +71,6 @@ section[id] {
   }
 }
 
-/* Mobile nav dropdown entrance: quick, no layout shift. */
 .nav-drop {
   animation: nav-drop 0.16s ease-out;
   transform-origin: top center;
@@ -109,7 +86,6 @@ section[id] {
   }
 }
 
-/* 16px+ inputs on phones: smaller sizes trigger iOS auto-zoom on focus. */
 input, select, textarea {
   font: inherit;
 }
@@ -146,7 +122,6 @@ p {
   transform: none;
 }
 
-/* Phones: subtle reveal on scroll too — half-open, not full rise. */
 @media (max-width: 639px) {
   .reveal {
     opacity: 0.15;
@@ -160,18 +135,6 @@ p {
     opacity: 1;
     transform: none;
   }
-}
-
-.card-heaven {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-soft);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-}
-.card-heaven:hover {
-  border-color: #d9d2c4;
-  box-shadow: var(--shadow-glow);
 }
 
 .label-row {
@@ -203,22 +166,6 @@ p {
   }
 }
 
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  padding: 0.35rem 0.65rem;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  line-height: 1;
-}
-
 .display-tight {
   letter-spacing: -0.045em;
   line-height: 1.0;
@@ -230,22 +177,6 @@ p {
   line-height: 1.75;
 }
 
-.section-airy {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-@media (min-width: 640px) {
-  .section-airy {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-  }
-}
-
-.glow-blob {
-  background: none;
-}
-
-/* Hero calm-premium motion: CSS only, transform + opacity, no scroll listeners. */
 .hero-enter {
   opacity: 0;
   animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -278,7 +209,6 @@ p {
   }
 }
 
-/* Ambient aura behind the mark: slow breathe, one layer. */
 .hero-aura {
   position: absolute;
   left: 50%;
@@ -302,8 +232,15 @@ p {
   }
 }
 
-/* Live brand dot: soft ping, no layout cost. */
 .brand-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 0.35em;
+  border-radius: 999px;
+  background: var(--primary);
+  opacity: 1;
+  vertical-align: middle;
   animation: dot-ping 2.6s ease-in-out infinite;
 }
 @keyframes dot-ping {
@@ -316,7 +253,6 @@ p {
   }
 }
 
-/* Product card shine: slow sweep, paused most of the cycle so it feels calm. */
 .hero-visual {
   position: relative;
 }
@@ -340,7 +276,6 @@ p {
   }
 }
 
-/* Phones: shorter rise, no blur tricks, aura fainter to save paint. */
 @media (max-width: 639px) {
   .hero-enter {
     animation-duration: 0.5s;
@@ -379,57 +314,15 @@ p {
   text-transform: uppercase;
 }
 
-.brand-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  margin-left: 0.35em;
-  border-radius: 999px;
-  background: var(--primary);
-  opacity: 1;
-  vertical-align: middle;
-}
-
 .hairline {
   border-color: var(--border);
 }
 
-.logo-stage {
-  background:
-    radial-gradient(circle at 50% 38%, rgba(234, 88, 12, 0.07), transparent 62%),
-    var(--surface);
-}
-
-.blueprint {
-  background-image:
-    linear-gradient(to right, rgba(26, 25, 23, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(26, 25, 23, 0.055) 1px, transparent 1px);
-  background-size: 44px 44px;
-  mask-image: radial-gradient(ellipse 95% 85% at 50% 42%, black 25%, transparent 78%);
-  -webkit-mask-image: radial-gradient(ellipse 95% 85% at 50% 42%, black 25%, transparent 78%);
-}
-/* Phones skip the masked grid entirely: saves paint, keeps hero clean. */
-@media (max-width: 639px) {
-  .blueprint {
-    display: none;
-  }
-}
-
-/* Primary CTA is always brand orange now (static hero, no scrub). */
 .cta-brand {
   background: var(--primary);
 }
 .cta-brand:hover {
   background: var(--primary-hover);
-}
-
-/* Proof band: ink until the brand arrives, then OrangeDev orange. */
-.proof-band {
-  background: var(--ink);
-  transition: background-color 0.7s ease;
-}
-[data-brand="on"] .proof-band {
-  background: var(--primary);
 }
 
 .marquee {
@@ -438,7 +331,6 @@ p {
   animation: marquee 20s linear infinite;
 }
 
-/* Tablet & Desktop: slower (60s) */
 @media (min-width: 640px) {
   .marquee {
     animation: marquee 60s linear infinite;
@@ -447,7 +339,6 @@ p {
 .marquee:hover {
   animation-play-state: paused;
 }
-/* Marquee runs on all viewports, transform only, cheap for the compositor. */
 .marquee-mask {
   mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
@@ -480,12 +371,7 @@ p {
   }
 }
 
-/* Touch devices: no hover lift or arrow nudges, keeps cards stable. */
 @media (hover: none) {
-  .card-heaven:hover {
-    border-color: var(--border);
-    box-shadow: var(--shadow-soft);
-  }
   .btn-nudge:hover svg {
     transform: none;
   }

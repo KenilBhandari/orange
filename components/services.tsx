@@ -24,17 +24,17 @@ export function Services() {
       <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-lg sm:border sm:bg-[var(--border)] md:grid-cols-2 hairline">
         {SERVICES.map((s, i) => (
           <Reveal key={s.n} delay={i * 50}>
-            <div className="group h-full rounded-lg border bg-surface p-5 hairline sm:rounded-none sm:border-0 sm:p-7">
+            <div className="h-full rounded-lg border bg-surface p-5 hairline sm:rounded-none sm:border-0 sm:p-7">
               <div className="flex items-baseline justify-between">
                 <span className="tnum text-[13px] font-semibold text-text-muted">{s.n}</span>
-                <span className="text-[13px] font-medium text-text-muted/60">0{i + 1} / 04</span>
+                <span className="text-[13px] font-medium text-text-muted/60">0{i + 1} / {String(SERVICES.length).padStart(2, "0")}</span>
               </div>
               <h3 className="mt-4 text-lg font-semibold tracking-[-0.02em] text-text sm:text-xl">
                 {s.title}
               </h3>
               <p className="mt-2 text-[14px] leading-6 text-text-muted">{s.text}</p>
               <div className="mt-4 flex flex-wrap gap-1.5 border-t hairline pt-4">
-                {TAGS[i % TAGS.length].map((t) => (
+                {TAGS[i].map((t) => (
                   <span
                     key={t}
                     className="inline-flex items-center rounded-lg border hairline bg-background px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted"

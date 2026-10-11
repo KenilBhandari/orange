@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ArrowRight, CheckCircle2, Send, Mail, Clock, AlertCircle, MessageSquareText } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 
-// One shared radius across the whole site, same as the hero CTA: rounded-lg (8px).
 const inputCls =
   "h-11 w-full rounded-lg border border-border bg-background px-3.5 text-[16px] text-text transition-[border-color,box-shadow] duration-150 placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary sm:text-[15px]";
 
@@ -46,7 +45,7 @@ function ContactForm() {
 
   const set =
     (k: keyof typeof form) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -160,7 +159,6 @@ export default function ContactPage() {
             <h1 className="mt-2 max-w-2xl text-[1.65rem] font-bold leading-[1.12] tracking-tight text-text sm:mt-3 sm:text-5xl sm:leading-[1.06]">
               Tell us what needs to work better<span className="text-primary">.</span>
             </h1>
-            {/* Long intro copy stays on desktop only, phones go straight to the form. */}
             <p className="mt-4 hidden max-w-xl text-base leading-relaxed text-text-muted sm:block sm:text-[15px]">
               One working day reply. Describe a simple tool, a payroll system,
               or a complete ERP and we will take it from there.
@@ -194,7 +192,6 @@ export default function ContactPage() {
                   </div>
                 ))}
               </div>
-              {/* Browsing nudge is desktop only, phones stay on the quick form path. */}
               <div className="hidden rounded-lg border hairline bg-primary-soft p-5 sm:block">
                 <p className="text-[14px] font-bold text-text">Prefer browsing first?</p>
                 <p className="mt-1.5 text-[14px] leading-relaxed text-text-muted">

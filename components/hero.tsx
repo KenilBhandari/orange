@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { OrangeMark } from "@/components/logo";
@@ -7,16 +5,11 @@ import { WordmarkLockup } from "@/components/wordmark";
 import { Reveal } from "@/components/reveal";
 import { PayrollArt } from "@/components/illustrations";
 
-/**
- * Static Kraftbase style hero. No scroll scrub, no sticky pin, no clock ring.
- * Same layout on phones and desktop, so phones feel instant.
- */
 export function Hero() {
   const words = ["Software", "that", "makes", "work", "simpler"];
   return (
     <>
       <section aria-label="Introduction" className="relative overflow-hidden border-b hairline">
-        {/* Ambient aura: slow breathe, transform + opacity only, cheap on phones */}
         <div aria-hidden="true" className="hero-aura" />
         <div className="relative mx-auto w-full max-w-3xl px-5 pb-10 text-center sm:px-6 sm:pb-16 sm:pt-16">
           <p className="hero-enter hidden sm:inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-lg border hairline bg-surface px-3 py-1.5 text-[11px] font-semibold uppercase leading-5 tracking-[0.08em] text-text-muted sm:text-[12px] sm:tracking-[0.1em]" style={{ animationDelay: "0ms" }}>
@@ -24,9 +17,8 @@ export function Hero() {
             <span className="brand-dot" aria-hidden="true" />
           </p>
 
-          {/* Light assembly: complete mark, identical on all screens */}
           <div className="hero-enter mx-auto mt-7 w-[104px] sm:mt-8 sm:w-[132px]" style={{ animationDelay: "90ms" }}>
-            <OrangeMark progress={1} fluid label="OrangeDev logo" />
+            <OrangeMark fluid label="OrangeDev logo" />
           </div>
 
           <div className="hero-enter mt-4 flex justify-center text-[1.25rem] sm:text-[1.7rem]" aria-label="OrangeDev" style={{ animationDelay: "180ms" }}>
@@ -77,7 +69,6 @@ export function Hero() {
         </div>
       </section>
 
-      {/* Product visual */}
       <div className="hero-enter relative mx-auto w-full max-w-3xl px-4 pt-8 sm:px-6 sm:pt-14" style={{ animationDelay: "960ms" }}>
         <Reveal>
           <div className="hero-visual overflow-hidden rounded-lg border hairline bg-surface">

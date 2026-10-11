@@ -22,7 +22,7 @@ export function Process() {
       </Reveal>
       <ol className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-lg sm:border sm:bg-[var(--border)] md:grid-cols-2 lg:grid-cols-5 hairline">
         {PROCESS.map((s) => (
-          <Reveal key={s.n} delay={0}>
+          <Reveal key={s.n}>
             <li className="h-full rounded-lg border bg-surface p-5 hairline sm:rounded-none sm:border-0">
               <span className="tnum text-[13px] font-semibold text-text-muted">
                 {s.n}
@@ -59,7 +59,7 @@ export function Trust() {
         </Reveal>
         <div className="mt-6 grid gap-3 sm:mt-10 sm:gap-px sm:overflow-hidden sm:rounded-lg sm:border sm:bg-[var(--border)] md:grid-cols-3 hairline">
           {ASSURANCES.map((a) => (
-            <Reveal key={a.t} delay={0}>
+            <Reveal key={a.t}>
               <div className="h-full rounded-lg border bg-surface p-5 hairline sm:rounded-none sm:border-0 sm:p-6">
                 <a.icon className="h-5 w-5 text-text" aria-hidden="true" />
                 <p className="mt-4 text-[15px] font-semibold text-text">{a.t}</p>

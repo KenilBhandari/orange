@@ -32,21 +32,6 @@ function Frame({ url, children }: { url: string; children: React.ReactNode }) {
   );
 }
 
-function Badge({ tone, children }: { tone: "green" | "amber" | "gray"; children: React.ReactNode }) {
-  const bg = tone === "green" ? GREEN_BG : tone === "amber" ? AMBER_BG : "#f0ede6";
-  const tx = tone === "green" ? GREEN_TX : tone === "amber" ? AMBER_TX : MUTED;
-  return (
-    <span
-      style={{ background: bg, color: tx }}
-      className="inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[9px] font-semibold"
-    >
-      <span style={{ background: tx }} className="h-1 w-1 rounded-full" aria-hidden="true" />
-      {children}
-    </span>
-  );
-}
-
-/* Client Commerce — mobile storefront as shipped: tab bar, welcome KPIs, 2-col product grid. */
 export function CommerceArt() {
   const products: Array<[string, string, string]> = [
     ["Essence Mascara", "★ 2.56 · Essence", "₹ 9.99"],
@@ -163,7 +148,6 @@ export function CommerceArt() {
   );
 }
 
-/* Collectedge / UK Website — pill nav, DPD headline, health ring + collection chart. */
 export function PresenceArt() {
   const bars = [52, 34, 78, 56, 38, 46, 36];
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -257,7 +241,6 @@ export function PresenceArt() {
   );
 }
 
-/* Trippy — as shipped: New Trip form + revenue dashboard. */
 export function TrippyArt() {
   return (
     <Frame url="trippy.orangedev.in/dispatch">
@@ -438,7 +421,6 @@ export function PayrollArt() {
   );
 }
 
-/* OrangeERP — as shipped: today's ops KPIs, site progress, muster, low stock. */
 export function ErpArt() {
   return (
     <Frame url="erp.orangedev.in/overview">
@@ -532,5 +514,3 @@ export function ErpArt() {
     </Frame>
   );
 }
-
-export { Badge };

@@ -54,7 +54,7 @@ export function Closing() {
         </Reveal>
         <Reveal delay={100} className="hidden lg:block">
           <div className="flex flex-col items-center rounded-lg border border-white/10 bg-white/[0.04] px-10 py-9">
-            <OrangeMark progress={1} size={120} label="OrangeDev logo complete" />
+            <OrangeMark size={120} label="OrangeDev logo complete" />
             <p className="mt-4 text-[12px] font-medium uppercase tracking-[0.12em] text-white/50">
               OrangeDev · Est. 2022
             </p>

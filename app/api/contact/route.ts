@@ -15,7 +15,6 @@ export async function POST(req: Request) {
 
   const b = (body ?? {}) as Record<string, unknown>;
 
-  // Honeypot: bots fill it, humans never see it.
   if (typeof b.website === "string" && b.website.trim() !== "") {
     return NextResponse.json({ ok: true });
   }
@@ -51,7 +50,6 @@ export async function POST(req: Request) {
     .filter(Boolean)
     .join("\n");
 
-  // Zoho SMTP (preferred): ZOHO_EMAIL + ZOHO_APP_PASSWORD -> CONTACT_TO
   const zohoUser = process.env.ZOHO_EMAIL;
   const zohoPass = process.env.ZOHO_APP_PASSWORD;
   const to = process.env.CONTACT_TO ?? process.env.CONTACT_TO_EMAIL;
@@ -75,7 +73,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  // Legacy Resend fallback.
   const resendKey = process.env.RESEND_API_KEY;
   const from = process.env.CONTACT_FROM_EMAIL ?? "OrangeDev <kenilbhandari@zohomail.in>";
   if (resendKey && to) {

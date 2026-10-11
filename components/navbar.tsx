@@ -14,8 +14,6 @@ const LINKS = [
   { label: "Our story", href: "/#story", section: "story" },
 ];
 
-const SECTIONS = ["solutions", "work", "start", "story"];
-
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
@@ -49,7 +47,7 @@ export function Navbar() {
       setActive(null);
       return;
     }
-    const els = SECTIONS.map((id) => document.getElementById(id)).filter(
+    const els = LINKS.map((l) => document.getElementById(l.section)).filter(
       (el): el is HTMLElement => el !== null
     );
     if (els.length === 0) return;
@@ -67,8 +65,6 @@ export function Navbar() {
 
   useEffect(() => setOpen(false), [pathname]);
 
-  // No body scroll lock: the mobile menu is a small floating card,
-  // locking the page behind it is what felt sticky and heavy.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
@@ -76,14 +72,10 @@ export function Navbar() {
     return () => document.removeEventListener("keydown", onKey);
   }, [open ]);
 
-  const isActive = (l: (typeof LINKS)[number]) => active === l.section;
-
   return (
     <header
       className={cn(
         "sticky top-0 z-50 bg-transparent",
-        // Desktop keeps a slim full width bar. Mobile is transparent so
-        // only the floating island paints, never a half screen backdrop.
         "border-0 px-3 pt-3 md:border-b md:px-0 md:pt-0",
         scrolled || open
           ? "md:hairline md:bg-background/85 md:backdrop-blur-sm"
@@ -97,7 +89,6 @@ export function Navbar() {
         Skip to content
       </a>
 
-      {/* Floating island on phones, plain row on desktop */}
       <div
         className={cn(
           "mx-auto flex h-14 w-full max-w-6xl items-center gap-4 px-3",
@@ -109,12 +100,12 @@ export function Navbar() {
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
           {LINKS.map((l) => (
             <Link
-              key={l.href + l.label}
+              key={l.href}
               href={l.href}
-              aria-current={isActive(l) ? "true" : undefined}
+              aria-current={active === l.section ? "true" : undefined}
               className={cn(
                 "px-3 py-2 text-[14px] tracking-[-0.01em] transition-colors",
-                isActive(l)
+                active === l.section
                   ? "font-semibold text-text"
                   : "font-medium text-text-muted hover:text-text"
               )}
@@ -146,8 +137,6 @@ export function Navbar() {
         </button>
       </div>
 
-      {/* Mobile dropdown: only mounted when open, so a closed menu
-          never reserves height or paints a phantom backdrop. */}
       {open && (
         <div className="mx-auto mt-2 w-full max-w-6xl md:hidden">
           <nav
@@ -156,12 +145,12 @@ export function Navbar() {
           >
             {LINKS.map((l) => (
               <Link
-                key={l.href + l.label}
+                key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
                 className={cn(
                   "flex items-center justify-between rounded-lg px-3 py-2.5 text-[16px] tracking-[-0.01em] transition-colors active:bg-background",
-                  isActive(l) ? "font-semibold text-text" : "font-medium text-text-muted"
+                  active === l.section ? "font-semibold text-text" : "font-medium text-text-muted"
                 )}
               >
                 {l.label}

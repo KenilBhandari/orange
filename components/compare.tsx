@@ -24,7 +24,6 @@ const ROWS = [
   },
 ];
 
-/** Kraftbase style split: two light columns, OrangeDev highlighted with tint. */
 export function Compare() {
   return (
     <section
@@ -67,7 +66,6 @@ export function Compare() {
           <div className="relative h-full overflow-hidden rounded-lg bg-[#FF6321]/90">
             <div className="flex items-center justify-between border-b border-white/25 px-5 py-3.5 sm:px-6 sm:py-4">
               <p className="text-[12px] font-semibold uppercase tracking-[0.1em] text-white">OrangeDev</p>
-
             </div>
             <ul>
               {ROWS.map((r) => (

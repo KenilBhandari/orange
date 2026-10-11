@@ -1,10 +1,3 @@
-// Engineered "orangeDEV" lockup from the real vector assets
-// (2-orange-text.svg + dev-text.svg).
-// Both words live in ONE coordinate space and share ONE baseline
-// (y=126 in the source artwork). DEV caps are scaled to the lowercase
-// x-height (the same relationship as the Kodees orange/ERP lockup), so
-// alignment is guaranteed everywhere this is used. Never lay the two
-// words out as separate side-by-side SVGs; their boxes do not align.
 export function WordmarkLockup({
   orangeFill,
   devFill,

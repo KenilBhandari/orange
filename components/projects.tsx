@@ -38,7 +38,6 @@ export function Projects() {
                   <Art />
                 </div>
                 <div className="p-3 sm:p-6">
-                  {/* Phones show art + title only. Meta, description, and footer stay desktop-only. */}
                   <p className="hidden truncate text-[12px] font-semibold uppercase tracking-[0.1em] text-text-muted sm:block">
                     {p.category} · {p.year}
                   </p>

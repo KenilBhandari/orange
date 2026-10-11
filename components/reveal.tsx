@@ -17,7 +17,6 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    // Reduced motion only: show immediately. Phones now keep a subtle reveal.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       el.classList.add("is-visible");
       return;
